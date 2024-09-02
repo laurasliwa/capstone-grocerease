@@ -13,6 +13,6 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: ${nunito.style.fontFamily}, system-ui;
-    background-color: #ECE4DB;
+    background-color: #FFFAF4;
   }
 `;

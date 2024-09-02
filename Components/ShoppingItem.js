@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function ShoppingItem({ quantity, name, category }) {
   return (
-    <ItemContainer>
+    <ItemContainer category={category}>
       <ItemQuantity>{quantity}</ItemQuantity>
       <ItemName>{name}</ItemName>
       <ItemCategory>{category}</ItemCategory>
@@ -17,17 +17,40 @@ const ItemContainer = styled.ul`
   grid-template-areas:
     "itemquantity itemname edit delete"
     "itemquantity itemcategory edit delete";
-
   border: 1px solid #362f23;
   padding: 0;
   margin: 5px;
   border-radius: 15px;
+  background-color: ${({ category }) => {
+    switch (category) {
+      case "Dairy":
+        return "#E3E3E3";
+      case "Bakery":
+        return "#F6ECDE";
+      case "Fruits":
+        return "#FDECF7";
+      case "Vegetables":
+        return "#F1FDEC";
+      case "Meat":
+        return "#FFE6DF";
+      case "Beverages":
+        return "#FFFEDF";
+      case "Snacks":
+        return "#E5D8C2";
+      case "Household":
+        return "#C2E5E0";
+      case "Personal Care":
+        return "#C2D3E5";
+      default:
+        return "gray";
+    }
+  }};
 `;
 
 const ItemQuantity = styled.li`
   grid-area: itemquantity;
   margin: 0;
-  padding: 13px;
+  padding: 0.81rem 0.95rem 0.81rem 0.95rem;
   font-size: 1.5em;
   list-style: none;
 `;
