@@ -10,16 +10,16 @@ export default function ShoppingItem({ quantity, name, category }) {
   );
 }
 
-const ItemContainer = styled.ul`
+const ItemContainer = styled.li`
   display: grid;
-  grid-template-columns: 0.2fr 1fr 0.5fr 0.5fr;
+  grid-template-columns: 0.2fr 1.6fr 0.4fr 0.4fr;
   grid-template-rows: 0.4fr 0.4fr 0 0;
   grid-template-areas:
     "itemquantity itemname edit delete"
     "itemquantity itemcategory edit delete";
   border: 1px solid #362f23;
   padding: 0;
-  margin: 5px;
+  margin: 6px;
   border-radius: 15px;
   background-color: ${({ category }) => {
     switch (category) {
@@ -47,24 +47,24 @@ const ItemContainer = styled.ul`
   }};
 `;
 
-const ItemQuantity = styled.li`
+const ItemQuantity = styled.span`
   grid-area: itemquantity;
   margin: 0;
-  padding: 0.81rem 0.95rem 0.81rem 0.95rem;
-  font-size: 1.5em;
+  padding: 0.8rem 1rem 0.8rem 1rem;
+  font-size: 1.8rem;
   list-style: none;
 `;
 
-const ItemName = styled.li`
+const ItemName = styled.span`
   grid-area: itemname;
-  margin: 0.5rem 0 0 0;
-  font-size: 1.25em;
+  margin: 0.6rem 0 0 0;
+  font-size: 1.4rem;
   list-style: none;
 `;
 
-const ItemCategory = styled.li`
+const ItemCategory = styled.span`
   grid-area: itemcategory;
-  margin: 0 0 0.25rem 0.05rem;
-  font-size: 0.75em;
+  margin: 0 0 0.4rem 0.1rem;
+  font-size: 0.8rem;
   list-style: none;
 `;
