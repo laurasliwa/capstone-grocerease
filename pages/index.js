@@ -49,7 +49,9 @@ const ListHeader = styled.div`
   grid-template-rows: 0.2fr;
   grid-template-areas: "shoppinglist itemstotal";
   position: fixed;
+  top: 58px;
   width: 100%;
+  background-color: #fff4e9;
   border-style: solid;
   border-radius: 0 0 15px 15px;
   height: 40px;
