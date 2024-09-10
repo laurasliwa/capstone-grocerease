@@ -7,12 +7,14 @@ export default function ShoppingItemList({ shoppingItems }) {
       <StyledItemList>
         {shoppingItems.map((shoppingItem) => {
           return (
-            <ShoppingItem
-              key={shoppingItem.id}
-              quantity={shoppingItem.quantity}
-              name={shoppingItem.name}
-              category={shoppingItem.category}
-            />
+            <>
+              <ShoppingItem
+                key={shoppingItem.id}
+                quantity={shoppingItem.quantity}
+                name={shoppingItem.name}
+                category={shoppingItem.category}
+              />
+            </>
           );
         })}
       </StyledItemList>

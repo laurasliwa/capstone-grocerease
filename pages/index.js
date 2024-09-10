@@ -1,5 +1,5 @@
 import shoppingItems from "@/assets/shopping-items.json";
-import ShoppingItemList from "@/Components/ShoppingItemList";
+import ShoppingItemList from "@/components/ShoppingItemList";
 import styled from "styled-components";
 
 export default function HomePage() {
@@ -28,6 +28,7 @@ const StyledHeader = styled.header`
   text-align: center;
   border-radius: 0;
   border-style: solid;
+  border-width: 2px 0;
   background-color: #fff4e9;
   color: #362f23;
   z-index: 1000;

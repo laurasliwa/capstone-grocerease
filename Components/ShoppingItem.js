@@ -6,17 +6,18 @@ export default function ShoppingItem({ quantity, name, category }) {
       <ItemQuantity>{quantity}</ItemQuantity>
       <ItemName>{name}</ItemName>
       <ItemCategory>{category}</ItemCategory>
+      <StyledButton href="/">Details</StyledButton>
     </ItemContainer>
   );
 }
 
 const ItemContainer = styled.li`
   display: grid;
-  grid-template-columns: 0.2fr 1.6fr 0.4fr 0.4fr;
+  grid-template-columns: 0.2fr 1.6fr 0.2fr 0.2fr 0.2fr;
   grid-template-rows: 0.4fr 0.4fr 0 0;
   grid-template-areas:
-    "itemquantity itemname edit delete"
-    "itemquantity itemcategory edit delete";
+    "itemquantity itemname details edit delete"
+    "itemquantity itemcategory details edit delete";
   border: 1px solid #362f23;
   padding: 0;
   margin: 6px;
@@ -50,7 +51,7 @@ const ItemContainer = styled.li`
 const ItemQuantity = styled.span`
   grid-area: itemquantity;
   margin: 0;
-  padding: 0.8rem 1rem 0.8rem 1rem;
+  padding: 0.8rem 1rem;
   font-size: 1.8rem;
   list-style: none;
 `;
@@ -67,4 +68,13 @@ const ItemCategory = styled.span`
   margin: 0 0 0.4rem 0.1rem;
   font-size: 0.8rem;
   list-style: none;
+`;
+
+const StyledButton = styled.button`
+  grid-are: details;
+  border-radius: 15px;
+  height: 1.8rem;
+  align-self: center;
+  border-width: 0.08rem;
+  background-color: #fff4e9;
 `;
