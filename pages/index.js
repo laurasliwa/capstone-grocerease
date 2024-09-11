@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
     <>
       <StyledHeader>
-        <StyledHeadline>GrocerEase</StyledHeadline>
+        <StyledHeadline>GrocerEase!</StyledHeadline>
       </StyledHeader>
       <main>
         <ListHeader>
