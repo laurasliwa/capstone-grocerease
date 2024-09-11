@@ -1,5 +1,5 @@
 import shoppingItems from "@/assets/shopping-items.json";
-import ShoppingItemList from "@/components/ShoppingItemList";
+
 import styled from "styled-components";
 
 export default function HomePage() {
