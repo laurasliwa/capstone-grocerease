@@ -15,7 +15,7 @@ export default function HomePage() {
             {shoppingItems.length} items total{" "}
           </StyledTotalItems>
         </ListHeader>
-        <ShoppingItemList shoppingItems={shoppingItems} />
+        {/* <ShoppingItemList shoppingItems={shoppingItems} /> */}
       </main>
     </>
   );
