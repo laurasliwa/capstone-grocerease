@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import shoppingItems from "@/assets/shopping-items.json";
-import Link from "next/link";
 
 export default function ShoppingItem({ quantity, name, category }) {
   return (
