@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import shoppingItems from "@/assets/shopping-items.json";
+import Link from "next/link";
 
-export default function ShoppingItem({ quantity, name, category }) {
+export default function ShoppingItem({ id, quantity, name, category }) {
   return (
     <ItemContainer category={category}>
       <ItemQuantity>{quantity}</ItemQuantity>
       <ItemName>{name}</ItemName>
       <ItemCategory>{category}</ItemCategory>
-      <StyledLink href={`/${shoppingItems.id}`}>Details</StyledLink>
+      <StyledLink href={`/${id}`}>Details</StyledLink>
     </ItemContainer>
   );
 }

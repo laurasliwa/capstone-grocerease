@@ -2,9 +2,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import styled from "styled-components";
 import shoppingItems from "@/assets/shopping-items.json";
-import ShoppingItemList from "@/components/ShoppingItemList";
+import ShoppingItem from "@/components/ShoppingItem";
 
-export default function ItemDetails({ ShoppingItem }) {
+export default function ItemDetails() {
   const router = useRouter();
   const { id } = router.query;
 
@@ -19,10 +19,10 @@ export default function ItemDetails({ ShoppingItem }) {
       <StyledHeader>
         <StyledHeadline>GrocerEase</StyledHeadline>
       </StyledHeader>
-      <StyledLink>← Back</StyledLink>
+      <StyledLink href="/">← Back</StyledLink>
       <main>
         <article>
-          <ShoppingItemList />
+          <ShoppingItem />
         </article>
       </main>
     </>
@@ -54,4 +54,8 @@ const StyledHeadline = styled.h1`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+`;
+
+const StyledArticle = styled.article`
+  top: 500px;
 `;

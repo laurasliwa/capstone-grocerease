@@ -1,12 +1,12 @@
 import shoppingItems from "@/assets/shopping-items.json";
-
+import ShoppingItemList from "@/components/ShoppingItemList";
 import styled from "styled-components";
 
 export default function HomePage() {
   return (
     <>
       <StyledHeader>
-        <StyledHeadline>GrocerEase!</StyledHeadline>
+        <StyledHeadline>GrocerEase</StyledHeadline>
       </StyledHeader>
       <main>
         <ListHeader>
@@ -15,7 +15,7 @@ export default function HomePage() {
             {shoppingItems.length} items total{" "}
           </StyledTotalItems>
         </ListHeader>
-        {/* <ShoppingItemList shoppingItems={shoppingItems} /> */}
+        <ShoppingItemList shoppingItems={shoppingItems} />
       </main>
     </>
   );
