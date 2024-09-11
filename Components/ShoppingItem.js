@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import shoppingItems from "@/assets/shopping-items.json";
+import Link from "next/link";
 
 export default function ShoppingItem({ quantity, name, category }) {
   return (
@@ -6,7 +8,7 @@ export default function ShoppingItem({ quantity, name, category }) {
       <ItemQuantity>{quantity}</ItemQuantity>
       <ItemName>{name}</ItemName>
       <ItemCategory>{category}</ItemCategory>
-      <StyledButton href="/">Details</StyledButton>
+      <StyledLink href={`/${shoppingItems.id}`}>Details</StyledLink>
     </ItemContainer>
   );
 }
@@ -70,11 +72,15 @@ const ItemCategory = styled.span`
   list-style: none;
 `;
 
-const StyledButton = styled.button`
+const StyledLink = styled.a`
   grid-are: details;
+  border: 1px solid #362f23;
   border-radius: 15px;
   height: 1.8rem;
+  width: 4.2rem;
   align-self: center;
-  border-width: 0.08rem;
   background-color: #fff4e9;
+  text-decoration: none;
+  color: #362f23;
+  padding: 2px 0 0 6px;
 `;
