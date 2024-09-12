@@ -19,11 +19,11 @@ export default function ItemDetails() {
       <StyledHeader>
         <StyledHeadline>GrocerEase</StyledHeadline>
       </StyledHeader>
-      <StyledLink href="/">← Back</StyledLink>
+      <HeaderSubline>
+        <StyledLink href="/">← Back</StyledLink>
+      </HeaderSubline>
       <main>
-        <article>
-          <ShoppingItem />
-        </article>
+        <StyledShoppingItem />
       </main>
     </>
   );
@@ -52,10 +52,14 @@ const StyledHeadline = styled.h1`
   margin: 0;
 `;
 
+const HeaderSubline = styled.div`
+  top: 100px;
+`;
+
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const StyledArticle = styled.article`
-  top: 500px;
+const StyledShoppingItem = styled(ShoppingItem)`
+  top: 100px;
 `;

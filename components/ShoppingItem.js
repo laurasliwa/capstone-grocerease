@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import shoppingItems from "@/assets/shopping-items.json";
 import Link from "next/link";
 
 export default function ShoppingItem({ id, quantity, name, category }) {
+  console.log(id);
   return (
-    <ItemContainer category={category}>
+    <ItemContainer $category={category}>
       <ItemQuantity>{quantity}</ItemQuantity>
       <ItemName>{name}</ItemName>
       <ItemCategory>{category}</ItemCategory>
@@ -24,8 +24,8 @@ const ItemContainer = styled.li`
   padding: 0;
   margin: 6px;
   border-radius: 15px;
-  background-color: ${({ category }) => {
-    switch (category) {
+  background-color: ${({ $category }) => {
+    switch ($category) {
       case "Dairy":
         return "#E3E3E3";
       case "Bakery":
@@ -72,7 +72,7 @@ const ItemCategory = styled.span`
   list-style: none;
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   grid-are: details;
   border: 1px solid #362f23;
   border-radius: 15px;
