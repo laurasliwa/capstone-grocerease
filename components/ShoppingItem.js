@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Link from "next/link";
 
 export default function ShoppingItem({ id, quantity, name, category }) {
-  console.log(id);
   return (
     <ItemContainer $category={category}>
       <ItemQuantity>{quantity}</ItemQuantity>
@@ -45,7 +44,7 @@ const ItemContainer = styled.li`
       case "Personal Care":
         return "#C2D3E5";
       default:
-        return "gray";
+        return " #a1b0be ";
     }
   }};
 `;
