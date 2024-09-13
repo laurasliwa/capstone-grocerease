@@ -28,28 +28,22 @@ export default function ItemDetails() {
           {currentItem ? (
             <>
               <ShoppingItemDetailsContainer $category={currentItem.category}>
-                <article>
-                  <StyledQuantity>
-                    <StyledNumber>{currentItem.quantity}</StyledNumber>
-                    <span>Quantity</span>
-                  </StyledQuantity>
-                  <section>
-                    <StyledItemname>{currentItem.name}</StyledItemname>
-                    {currentItem.category}
-                  </section>
-                  <Image
-                    src={`/images/${currentItem.imageUrl}`}
-                    alt={currentItem.name}
-                    style={{ objectFit: "contain" }}
-                    width={250}
-                    height={300}
-                    priority={true}
-                  />
-                  <section>
-                    <h3>Comments </h3>
-                    <StyledComment>{currentItem.comment}</StyledComment>
-                  </section>
-                </article>
+                <StyledQuantity>
+                  <StyledNumber>{currentItem.quantity}</StyledNumber>
+                  <span>Quantity</span>
+                </StyledQuantity>
+                <StyledItemname>{currentItem.name}</StyledItemname>
+                <StyledCategory>{currentItem.category}</StyledCategory>
+                <StyledImage
+                  src={`/images/${currentItem.imageUrl}`}
+                  alt={currentItem.name}
+                  style={{ objectFit: "contain" }}
+                  width={250}
+                  height={300}
+                  priority={true}
+                />
+                <StyledCommentTitle>Comments </StyledCommentTitle>
+                <StyledComment>{currentItem.comment}</StyledComment>
               </ShoppingItemDetailsContainer>
             </>
           ) : (
@@ -93,6 +87,7 @@ const HeaderSubline = styled.div`
   border-radius: 0 0 15px 15px;
   height: 40px;
   padding: 8px 0 0 10px;
+  z-index: 1000;
 `;
 
 const StyledLink = styled(Link)`
@@ -104,18 +99,18 @@ const StyledLink = styled(Link)`
 const ShoppingItemDetailsContainer = styled.article`
   display: grid;
   grid-template-columns: 0.2fr 1.6fr 0.4fr;
-  grid-template-rows: 2.4fr 4fr 0.4fr 3fr;
+  grid-template-rows: 0.2fr 0.2fr 3fr 0.4fr 0.6fr;
   grid-template-areas:
-    "quantity itemname category"
+    "quantity category category"
+    "quantity itemname itemname"
     "image image image"
     "subline subline subline"
     "comment comment comment";
-  position: fixed;
-  align-items: start;
+  position: absolute;
   top: 106px;
-  padding: 20px 40px;
   margin: 0 20px;
-  border-radius: 15px;
+  max-width: 100%;
+  border-radius: 20px;
   border: 1px solid;
   background-color: ${({ $category }) => {
     switch ($category) {
@@ -150,6 +145,7 @@ const StyledQuantity = styled.section`
   align-items: center;
   width: 76px;
   padding: 6px 0;
+  margin: 5px 0 0 5px;
   border: 1px solid;
   border-radius: 18px;
   background-color: #fff4e9;
@@ -161,11 +157,35 @@ const StyledNumber = styled.span`
 
 const StyledItemname = styled.h2`
   grid-area: itemname;
+  margin: 4px 0 0 4px;
+  font-size: 2rem;
+  font-weight: normal;
+`;
+
+const StyledCategory = styled.h3`
+  grid-area: category;
+  font-weight: normal;
+  font-size: 1rem;
+  margin: 8px 10px 0 164px;
+`;
+
+const StyledImage = styled(Image)`
+  grid-area: image;
+  max-width: 100%;
+  height: auto;
+  margin: 6px 26px;
+`;
+
+const StyledCommentTitle = styled.h4`
+  grid-area: subline;
+  margin: 10px 8px 0 8px;
 `;
 
 const StyledComment = styled.p`
   grid-area: comment;
   border: solid 1px;
   border-radius: 15px;
+  padding: 2px 6px;
+  margin: 0 5px 5px 5px;
   background-color: #fff4e9;
 `;
