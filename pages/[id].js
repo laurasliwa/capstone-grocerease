@@ -106,10 +106,10 @@ const ShoppingItemDetailsContainer = styled.article`
     "image image image"
     "subline subline subline"
     "comment comment comment";
-  position: absolute;
-  top: 106px;
-  margin: 0 20px;
+  position: relative;
+  margin: 106px 12px;
   max-width: 100%;
+  width: 94%;
   border-radius: 20px;
   border: 1px solid;
   background-color: ${({ $category }) => {
@@ -167,13 +167,17 @@ const StyledCategory = styled.h3`
   font-weight: normal;
   font-size: 1rem;
   margin: 8px 10px 0 164px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2px;
+  text-align: right;
 `;
 
 const StyledImage = styled(Image)`
   grid-area: image;
   max-width: 100%;
   height: auto;
-  margin: 6px 26px;
+  margin: 6px auto;
 `;
 
 const StyledCommentTitle = styled.h4`
