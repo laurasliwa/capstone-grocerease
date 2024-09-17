@@ -72,7 +72,7 @@ const ItemCategory = styled.span`
 `;
 
 const StyledLink = styled(Link)`
-  grid-are: details;
+  grid-area: details;
   border: 1px solid #362f23;
   border-radius: 15px;
   height: 1.8rem;

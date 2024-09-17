@@ -32,7 +32,7 @@ export default function ItemDetails() {
                   <StyledNumber>{currentItem.quantity}</StyledNumber>
                   <span>Quantity</span>
                 </StyledQuantity>
-                <StyledItemname>{currentItem.name}</StyledItemname>
+                <StyledItemName>{currentItem.name}</StyledItemName>
                 <StyledCategory>{currentItem.category}</StyledCategory>
                 <StyledImage
                   src={`/images/${currentItem.imageUrl}`}
@@ -155,7 +155,7 @@ const StyledNumber = styled.span`
   font-size: 1.8rem;
 `;
 
-const StyledItemname = styled.h2`
+const StyledItemName = styled.h2`
   grid-area: itemname;
   margin: 4px 0 0 4px;
   font-size: 2rem;
