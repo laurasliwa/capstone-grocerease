@@ -1,10 +1,17 @@
-import shoppingItems from "@/assets/shopping-items.json";
-import ShoppingItemList from "@/components/ShoppingItemList";
-import styled from "styled-components";
+import { useState } from "react";
 import Form from "@/components/Form";
+import ShoppingItemList from "@/components/ShoppingItemList";
+import shoppingItemsData from "@/assets/shopping-items.json";
+import { uid } from "uid";
+import styled from "styled-components";
 
 export default function HomePage() {
+  const [shoppingItemsState, setShoppingItemsState] =
+    useState(shoppingItemsData);
+
   function handleCreateItem(newItem) {
+    const itemWithId = { ...newItem, id: uid() };
+    setShoppingItemsState((prevItems) => [itemWithId, ...prevItems]);
     console.log("New item created:", newItem);
   }
 
@@ -17,11 +24,11 @@ export default function HomePage() {
         <ListHeader>
           <StyledListName>Shopping List</StyledListName>
           <StyledTotalItems>
-            {shoppingItems.length} items total{" "}
+            {shoppingItemsState.length} items total{" "}
           </StyledTotalItems>
         </ListHeader>
         <Form onCreateItem={handleCreateItem} />
-        <ShoppingItemList shoppingItems={shoppingItems} />
+        <ShoppingItemList shoppingItems={shoppingItemsState} />
       </main>
     </>
   );

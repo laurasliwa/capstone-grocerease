@@ -22,6 +22,6 @@ export default function ShoppingItemList({ shoppingItems }) {
 }
 
 const StyledItemList = styled.ul`
-  margin: 90px 0 0 0;
+  margin: 0;
   padding: 10px;
 `;
