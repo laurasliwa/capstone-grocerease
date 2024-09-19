@@ -1,10 +1,27 @@
-export default function CreateForm() {
+import styled from "styled-components";
+import categories from "@/assets/categories.json";
+import { useState } from "react";
+
+export default function CreateForm({ onCreateItem }) {
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
   function handleSubmit(event) {
     event.preventDefault();
-    const form = event.target;
+    const formData = new FormData(event.target);
+    const newItem = Object.fromEntries(formData);
+
+    onCreateItem(newItem);
+    event.target.reset();
+    setSelectedCategory("");
   }
+
   return (
-    <form onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
+      <h3>Add new item</h3>
       <label htmlFor="itemName">Item Name</label>
       <input
         name="itemName"
@@ -22,14 +39,29 @@ export default function CreateForm() {
         required
       />
       <label htmlFor="category">Category</label>
-      <select key="category" name="category" data-js="category" required>
-        <option key={categories} value={categories}>
-          {categories}
-        </option>
+      <select
+        id="category"
+        value={selectedCategory}
+        onChange={handleCategoryChange}
+        required
+      >
+        <option value="">---Choose a category---</option>
+        {categories.map((category) => {
+          return (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          );
+        })}
       </select>
       <label htmlFor="comment">Comment</label>
       <textarea name="comment" id="comment" placeholder="(Optional)"></textarea>
       <button>Create</button>
-    </form>
+    </StyledForm>
   );
 }
+
+const StyledForm = styled.form`
+  margin: 90px 0 0 0;
+  padding: 10px;
+`;

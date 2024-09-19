@@ -1,8 +1,13 @@
 import shoppingItems from "@/assets/shopping-items.json";
 import ShoppingItemList from "@/components/ShoppingItemList";
 import styled from "styled-components";
+import Form from "@/components/Form";
 
 export default function HomePage() {
+  function handleCreateItem(newItem) {
+    console.log("New item created:", newItem);
+  }
+
   return (
     <>
       <StyledHeader>
@@ -15,6 +20,7 @@ export default function HomePage() {
             {shoppingItems.length} items total{" "}
           </StyledTotalItems>
         </ListHeader>
+        <Form onCreateItem={handleCreateItem} />
         <ShoppingItemList shoppingItems={shoppingItems} />
       </main>
     </>
