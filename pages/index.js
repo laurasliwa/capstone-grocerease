@@ -15,7 +15,7 @@ export default function HomePage({ shoppingItems, onCreateItem}) {
         <ListHeader>
           <StyledListName>Shopping List</StyledListName>
           <StyledTotalItems>
-            {shoppingItemsState.length} items total{" "}
+            {shoppingItems.length} items total{" "}
           </StyledTotalItems>
         </ListHeader>
         <Form onCreateItem={handleCreateItem} />
