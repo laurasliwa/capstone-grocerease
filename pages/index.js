@@ -6,15 +6,6 @@ import { uid } from "uid";
 import styled from "styled-components";
 
 export default function HomePage() {
-  const [shoppingItemsState, setShoppingItemsState] =
-    useState(shoppingItemsData);
-
-  function handleCreateItem(newItem) {
-    const itemWithId = { ...newItem, id: uid() };
-    setShoppingItemsState((prevItems) => [itemWithId, ...prevItems]);
-    console.log("New item created:", newItem);
-  }
-
   return (
     <>
       <StyledHeader>

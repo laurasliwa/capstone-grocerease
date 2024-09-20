@@ -12,7 +12,8 @@ export default function CreateForm({ onCreateItem }) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const newItem = Object.fromEntries(formData.entries());
+    const newItem = Object.fromEntries(formData);
+    newItem.imageUrl = "placeholder.png";
 
     onCreateItem(newItem);
     event.target.reset();

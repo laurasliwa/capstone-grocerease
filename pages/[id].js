@@ -1,15 +1,14 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styled from "styled-components";
-import shoppingItems from "@/assets/shopping-items.json";
-import ShoppingItem from "@/components/ShoppingItem";
+import shoppingItemsData from "@/assets/shopping-items.json";
 import Image from "next/image";
 
 export default function ItemDetails() {
   const router = useRouter();
   const { id } = router.query;
 
-  const currentItem = shoppingItems.find((item) => item.id === id);
+  const currentItem = shoppingItemsData.find((item) => item.id === id);
 
   if (!currentItem) {
     return <p>Shopping item not found.</p>;
