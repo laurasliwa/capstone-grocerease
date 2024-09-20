@@ -19,7 +19,7 @@ export default function HomePage({ shoppingItems, onCreateItem}) {
           </StyledTotalItems>
         </ListHeader>
         <Form onCreateItem={onCreateItem} />
-        <ShoppingItemList shoppingItems={shoppingItemsState} />
+        <ShoppingItemList shoppingItems={shoppingItems} />
       </main>
     </>
   );
