@@ -5,7 +5,7 @@ import shoppingItemsData from "@/assets/shopping-items.json";
 import { uid } from "uid";
 import styled from "styled-components";
 
-export default function HomePage() {
+export default function HomePage({ shoppingItems, onCreateItem}) {
   return (
     <>
       <StyledHeader>
