@@ -4,13 +4,11 @@ import shoppingItemsData from "@/assets/shopping-items.json";
 import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
-  const [shoppingItemsState, setShoppingItemsState] =
-    useState(shoppingItemsData);
+  const [shoppingItems, setShoppingItems] = useState(shoppingItemsData);
 
   function handleCreateItem(newItem) {
-    const itemWithId = { ...newItem, id: uid() };
-    console.log(itemWithId);
-    setShoppingItemsState((prevItems) => [itemWithId, ...prevItems]);
+    const itemWithId = { ...newItem, id: uid(), imageUrl: "placeholder.jpg" };
+    setShoppingItems((prevItems) => [itemWithId, ...prevItems]);
   }
   return (
     <>
@@ -18,7 +16,7 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         onCreateItem={handleCreateItem}
-        shoppingItems={shoppingItemsState}
+        shoppingItems={shoppingItems}
       />
     </>
   );

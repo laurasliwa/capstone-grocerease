@@ -1,11 +1,8 @@
-import { useState } from "react";
 import Form from "@/components/Form";
 import ShoppingItemList from "@/components/ShoppingItemList";
-import shoppingItemsData from "@/assets/shopping-items.json";
-import { uid } from "uid";
 import styled from "styled-components";
 
-export default function HomePage({ shoppingItems, onCreateItem}) {
+export default function HomePage({ shoppingItems, onCreateItem }) {
   return (
     <>
       <StyledHeader>
