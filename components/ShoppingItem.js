@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import Delete from "@/public/icons/delete.svg";
 
 export default function ShoppingItem({ id, quantity, name, category }) {
   return (
@@ -8,17 +9,20 @@ export default function ShoppingItem({ id, quantity, name, category }) {
       <ItemName>{name}</ItemName>
       <ItemCategory>{category}</ItemCategory>
       <StyledLink href={`/${id}`}>Details</StyledLink>
+      <StyledButton type="button">
+        <DeleteIcon />
+      </StyledButton>
     </ItemContainer>
   );
 }
 
 const ItemContainer = styled.li`
   display: grid;
-  grid-template-columns: 0.2fr 1.6fr 0.2fr 0.2fr 0.2fr;
+  grid-template-columns: 0.2fr 1.6fr 0.2fr 0.2fr;
   grid-template-rows: 0.4fr 0.4fr 0 0;
   grid-template-areas:
-    "itemquantity itemname details edit delete"
-    "itemquantity itemcategory details edit delete";
+    "itemquantity itemname details edit"
+    "itemquantity itemcategory details delete";
   border: 1px solid #362f23;
   padding: 0;
   margin: 6px;
@@ -53,14 +57,14 @@ const ItemQuantity = styled.span`
   grid-area: itemquantity;
   margin: 0;
   padding: 0.8rem 1rem;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   list-style: none;
 `;
 
 const ItemName = styled.span`
   grid-area: itemname;
   margin: 0.6rem 0 0 0;
-  font-size: 1.4rem;
+  font-size: 1.08rem;
   list-style: none;
 `;
 
@@ -75,11 +79,23 @@ const StyledLink = styled(Link)`
   grid-area: details;
   border: 1px solid #362f23;
   border-radius: 15px;
-  height: 1.8rem;
-  width: 4.2rem;
+  height: 1.4rem;
+  width: 3.4rem;
   align-self: center;
   background-color: #fff4e9;
   text-decoration: none;
   color: #362f23;
   padding: 2px 0 0 6px;
+  font-size: 12px;
+`;
+
+const StyledButton = styled.button`
+  grid-area: delete;
+  border: none;
+  background-color: transparent;
+`;
+
+const DeleteIcon = styled(Delete)`
+  width: 20px;
+  height: 20px;
 `;

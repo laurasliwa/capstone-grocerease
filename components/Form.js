@@ -28,6 +28,7 @@ export default function CreateForm({ onCreateItem }) {
         id="name"
         type="text"
         placeholder="(Required)"
+        maxLength="20"
         required
       />
       <FlexContainer>
@@ -58,6 +59,8 @@ export default function CreateForm({ onCreateItem }) {
             id="quantity"
             type="number"
             placeholder="(Required)"
+            min="0"
+            max="999"
             required
           />
         </StyledQuantityInputContainer>
