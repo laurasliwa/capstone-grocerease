@@ -1,11 +1,9 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import styled from "styled-components";
-import shoppingItems from "@/assets/shopping-items.json";
-import ShoppingItem from "@/components/ShoppingItem";
 import Image from "next/image";
 
-export default function ItemDetails() {
+export default function ItemDetails({ shoppingItems }) {
   const router = useRouter();
   const { id } = router.query;
 

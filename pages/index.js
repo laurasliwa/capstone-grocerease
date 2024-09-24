@@ -1,8 +1,8 @@
-import shoppingItems from "@/assets/shopping-items.json";
+import Form from "@/components/Form";
 import ShoppingItemList from "@/components/ShoppingItemList";
 import styled from "styled-components";
 
-export default function HomePage() {
+export default function HomePage({ shoppingItems, onCreateItem }) {
   return (
     <>
       <StyledHeader>
@@ -15,6 +15,7 @@ export default function HomePage() {
             {shoppingItems.length} items total{" "}
           </StyledTotalItems>
         </ListHeader>
+        <Form onCreateItem={onCreateItem} />
         <ShoppingItemList shoppingItems={shoppingItems} />
       </main>
     </>
