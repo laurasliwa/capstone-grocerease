@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { useState } from "react";
 import Delete from "@/public/icons/delete.svg";
 
 export default function ShoppingItem({
@@ -9,15 +10,37 @@ export default function ShoppingItem({
   category,
   onDeleteItem,
 }) {
+  const [isDeleteConfirmVisible, setIsDeleteConfirmVisible] = useState(false); // Zustand für den Bestätigungsdialog
+
+  // Funktion zum Anzeigen des Bestätigungsdialogs
+  function handleShowConfirm() {
+    setIsDeleteConfirmVisible(true);
+  }
+
+  // Funktion zum Verstecken des Bestätigungsdialogs
+  function handleHideConfirm() {
+    setIsDeleteConfirmVisible(false);
+  }
+
   return (
     <ItemContainer $category={category}>
-      <ItemQuantity>{quantity}</ItemQuantity>
-      <ItemName>{name}</ItemName>
-      <ItemCategory>{category}</ItemCategory>
-      <StyledLink href={`/${id}`}>Details</StyledLink>
-      <StyledButton onClick={() => onDeleteItem(id)}>
-        <DeleteIcon />
-      </StyledButton>
+      {isDeleteConfirmVisible ? (
+        <>
+          <ConfirmDialog>Delete item?</ConfirmDialog>
+          <ConfirmButton onClick={() => onDeleteItem(id)}>Yes</ConfirmButton>
+          <CancelButton onClick={handleHideConfirm}>No</CancelButton>
+        </>
+      ) : (
+        <>
+          <ItemQuantity>{quantity}</ItemQuantity>
+          <ItemName>{name}</ItemName>
+          <ItemCategory>{category}</ItemCategory>
+          <StyledLink href={`/${id}`}>Details</StyledLink>
+          <StyledButton onClick={handleShowConfirm}>
+            <DeleteIcon />
+          </StyledButton>
+        </>
+      )}
     </ItemContainer>
   );
 }
@@ -27,8 +50,8 @@ const ItemContainer = styled.li`
   grid-template-columns: 0.2fr 1.6fr 0.2fr 0.2fr;
   grid-template-rows: 0.4fr 0.4fr 0 0;
   grid-template-areas:
-    "itemquantity itemname details edit"
-    "itemquantity itemcategory details delete";
+    "itemquantity itemname details mark"
+    "itemquantity itemcategory edit delete";
   border: 1px solid #362f23;
   padding: 0;
   margin: 6px;
@@ -105,4 +128,35 @@ const DeleteIcon = styled(Delete)`
   width: 20px;
   height: 20px;
   border-left: 1px dotted #362f23;
+`;
+
+const ConfirmDialog = styled.p`
+  grid-area: itemname;
+  align-items: center;
+  padding: 10px 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+`;
+
+const ConfirmButton = styled.button`
+  grid-area: details;
+  background-color: #e0ffd3;
+  color: #000;
+  border: none;
+  font-weight: bold;
+  padding: 0 8px;
+  margin: 8px 8px 0 0;
+  border-radius: 15px;
+`;
+
+const CancelButton = styled.button`
+  grid-area: mark;
+  background-color: #ffd3d3;
+  color: #000;
+  border: none;
+  font-weight: bold;
+  padding: 0 8px;
+  margin: 8px 8px 0 0;
+  border-radius: 15px;
 `;

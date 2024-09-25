@@ -5,6 +5,7 @@ import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
   const [shoppingItems, setShoppingItems] = useState(shoppingItemsData);
+  const [isDelete, setIsDelete] = useState();
 
   function handleCreateItem(newItem) {
     const itemWithId = { ...newItem, id: uid(), imageUrl: "placeholder.jpg" };
