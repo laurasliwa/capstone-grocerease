@@ -2,14 +2,20 @@ import styled from "styled-components";
 import Link from "next/link";
 import Delete from "@/public/icons/delete.svg";
 
-export default function ShoppingItem({ id, quantity, name, category }) {
+export default function ShoppingItem({
+  id,
+  quantity,
+  name,
+  category,
+  onDeleteItem,
+}) {
   return (
     <ItemContainer $category={category}>
       <ItemQuantity>{quantity}</ItemQuantity>
       <ItemName>{name}</ItemName>
       <ItemCategory>{category}</ItemCategory>
       <StyledLink href={`/${id}`}>Details</StyledLink>
-      <StyledButton type="button">
+      <StyledButton onClick={() => onDeleteItem(id)}>
         <DeleteIcon />
       </StyledButton>
     </ItemContainer>
@@ -98,4 +104,5 @@ const StyledButton = styled.button`
 const DeleteIcon = styled(Delete)`
   width: 20px;
   height: 20px;
+  border-left: 1px dotted #362f23;
 `;

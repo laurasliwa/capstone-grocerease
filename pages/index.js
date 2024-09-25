@@ -2,7 +2,11 @@ import Form from "@/components/Form";
 import ShoppingItemList from "@/components/ShoppingItemList";
 import styled from "styled-components";
 
-export default function HomePage({ shoppingItems, onCreateItem }) {
+export default function HomePage({
+  shoppingItems,
+  onCreateItem,
+  onDeleteItem,
+}) {
   return (
     <>
       <StyledHeader>
@@ -16,7 +20,10 @@ export default function HomePage({ shoppingItems, onCreateItem }) {
           </StyledTotalItems>
         </ListHeader>
         <Form onCreateItem={onCreateItem} />
-        <ShoppingItemList shoppingItems={shoppingItems} />
+        <ShoppingItemList
+          shoppingItems={shoppingItems}
+          onDeleteItem={onDeleteItem}
+        />
       </main>
     </>
   );

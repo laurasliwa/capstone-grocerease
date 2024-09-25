@@ -1,7 +1,7 @@
 import ShoppingItem from "./ShoppingItem";
 import styled from "styled-components";
 
-export default function ShoppingItemList({ shoppingItems }) {
+export default function ShoppingItemList({ shoppingItems, onDeleteItem }) {
   return (
     <>
       <StyledItemList>
@@ -13,6 +13,7 @@ export default function ShoppingItemList({ shoppingItems }) {
               name={shoppingItem.name}
               category={shoppingItem.category}
               id={shoppingItem.id}
+              onDeleteItem={onDeleteItem}
             />
           );
         })}
