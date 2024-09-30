@@ -10,16 +10,10 @@ export default function ShoppingItem({
   category,
   onDeleteItem,
 }) {
-  const [isDeleteConfirmVisible, setIsDeleteConfirmVisible] = useState(false); // Zustand für den Bestätigungsdialog
+  const [isDeleteConfirmVisible, setIsDeleteConfirmVisible] = useState(false);
 
-  // Funktion zum Anzeigen des Bestätigungsdialogs
-  function handleShowConfirm() {
-    setIsDeleteConfirmVisible(true);
-  }
-
-  // Funktion zum Verstecken des Bestätigungsdialogs
-  function handleHideConfirm() {
-    setIsDeleteConfirmVisible(false);
+  function handleToggleDelete() {
+    setIsDeleteConfirmVisible(!isDeleteConfirmVisible);
   }
 
   return (
@@ -28,7 +22,7 @@ export default function ShoppingItem({
         <>
           <ConfirmDialog>Delete item?</ConfirmDialog>
           <ConfirmButton onClick={() => onDeleteItem(id)}>Yes</ConfirmButton>
-          <CancelButton onClick={handleHideConfirm}>No</CancelButton>
+          <CancelButton onClick={handleToggleDelete}>No</CancelButton>
         </>
       ) : (
         <>
@@ -36,7 +30,7 @@ export default function ShoppingItem({
           <ItemName>{name}</ItemName>
           <ItemCategory>{category}</ItemCategory>
           <StyledLink href={`/${id}`}>Details</StyledLink>
-          <StyledButton onClick={handleShowConfirm}>
+          <StyledButton onClick={handleToggleDelete}>
             <DeleteIcon />
           </StyledButton>
         </>
