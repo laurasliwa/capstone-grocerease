@@ -10,12 +10,18 @@ export default function App({ Component, pageProps }) {
     const itemWithId = { ...newItem, id: uid(), imageUrl: "placeholder.jpg" };
     setShoppingItems((prevItems) => [itemWithId, ...prevItems]);
   }
+
+  function handleDeleteItem(id) {
+    setShoppingItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  }
+
   return (
     <>
       <GlobalStyle />
       <Component
         {...pageProps}
         onCreateItem={handleCreateItem}
+        onDeleteItem={handleDeleteItem}
         shoppingItems={shoppingItems}
       />
     </>

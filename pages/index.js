@@ -2,7 +2,11 @@ import Form from "@/components/Form";
 import ShoppingItemList from "@/components/ShoppingItemList";
 import styled from "styled-components";
 
-export default function HomePage({ shoppingItems, onCreateItem }) {
+export default function HomePage({
+  shoppingItems,
+  onCreateItem,
+  onDeleteItem,
+}) {
   return (
     <>
       <StyledHeader>
@@ -16,7 +20,15 @@ export default function HomePage({ shoppingItems, onCreateItem }) {
           </StyledTotalItems>
         </ListHeader>
         <Form onCreateItem={onCreateItem} />
-        <ShoppingItemList shoppingItems={shoppingItems} />
+        <ShoppingItemList
+          shoppingItems={shoppingItems}
+          onDeleteItem={onDeleteItem}
+        />
+        {shoppingItems.length === 0 && (
+          <StyledMessage>
+            I feel so empty <span>🥺</span> Add new items with the form above.
+          </StyledMessage>
+        )}
       </main>
     </>
   );
@@ -75,4 +87,17 @@ const StyledTotalItems = styled.p`
   color: #362f23;
   padding: 0 10px 0 0;
   margin: 8px 0 0 0;
+`;
+
+const StyledMessage = styled.p`
+  border: 1px solid #362f23;
+  border-radius: 15px;
+  height: 4rem;
+  width: 20rem;
+  background-color: #fff4e9;
+  color: #362f23;
+  padding: 4px;
+  margin: 0 26px;
+  font-size: 20px;
+  text-align: center;
 `;

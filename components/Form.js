@@ -28,6 +28,7 @@ export default function CreateForm({ onCreateItem }) {
         id="name"
         type="text"
         placeholder="(Required)"
+        maxLength="20"
         required
       />
       <FlexContainer>
@@ -58,6 +59,8 @@ export default function CreateForm({ onCreateItem }) {
             id="quantity"
             type="number"
             placeholder="(Required)"
+            min="0"
+            max="999"
             required
           />
         </StyledQuantityInputContainer>
@@ -67,6 +70,8 @@ export default function CreateForm({ onCreateItem }) {
         name="comment"
         id="comment"
         placeholder="(Optional)"
+        maxLength="100"
+        wrap="hard"
       ></StyledCommentTextarea>
       <StyledCreateButton>Create</StyledCreateButton>
     </StyledForm>
@@ -124,7 +129,10 @@ const StyledCommentTextarea = styled.textarea`
   border-radius: 8px;
   height: 1.4rem;
   height: 4rem;
-  overflow-y: auto;
+  resize: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 `;
 
 const StyledCreateButton = styled.button`
