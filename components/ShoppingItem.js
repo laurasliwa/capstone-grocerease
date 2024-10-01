@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useState } from "react";
 import Delete from "@/public/icons/delete.svg";
+import Edit from "@/public/icons/edit.svg";
 
 export default function ShoppingItem({
   id,
@@ -30,9 +31,10 @@ export default function ShoppingItem({
           <ItemName>{name}</ItemName>
           <ItemCategory>{category}</ItemCategory>
           <StyledLink href={`/${id}`}>Details</StyledLink>
-          <StyledButton onClick={handleToggleDelete}>
+          <EditIcon />
+          <DeleteButton onClick={handleToggleDelete}>
             <DeleteIcon />
-          </StyledButton>
+          </DeleteButton>
         </>
       )}
     </ItemContainer>
@@ -112,10 +114,16 @@ const StyledLink = styled(Link)`
   font-size: 12px;
 `;
 
-const StyledButton = styled.button`
+const DeleteButton = styled.button`
   grid-area: delete;
   border: none;
   background-color: transparent;
+`;
+
+const EditIcon = styled(Edit)`
+  width: 20px;
+  height: 20px;
+  border-left: 1px dotted #362f23;
 `;
 
 const DeleteIcon = styled(Delete)`
