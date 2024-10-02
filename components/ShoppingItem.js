@@ -116,21 +116,21 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: #362f23;
   padding: 2px 0 0 6px;
-  margin-left: 4px;
+  margin-left: 12px;
   font-size: 12px;
 `;
 
 const StyledCheckBox = styled.input`
   grid-area: mark;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   margin-top: 4px;
 `;
 
 const StyledCheckboxLabel = styled.label`
   grid-area: mark;
-  font-size: 10px;
-  margin: 4px 0 0 12px;
+  font-size: 12px;
+  margin: 3px 0 0 14px;
 `;
 
 const DeleteButton = styled.button`
