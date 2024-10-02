@@ -10,6 +10,7 @@ export default function ShoppingItem({
   name,
   category,
   onDeleteItem,
+  onTogglePurchased,
 }) {
   const [isDeleteConfirmVisible, setIsDeleteConfirmVisible] = useState(false);
 
@@ -31,7 +32,11 @@ export default function ShoppingItem({
           <ItemName>{name}</ItemName>
           <ItemCategory>{category}</ItemCategory>
           <StyledLink href={`/${id}`}>Details</StyledLink>
-          <EditIcon />
+          <StyledCheckBox
+            type="checkbox"
+            onClick={onTogglePurchased}
+          ></StyledCheckBox>
+          <StyledCheckboxLabel>Purchased</StyledCheckboxLabel>
           <DeleteButton onClick={handleToggleDelete}>
             <DeleteIcon />
           </DeleteButton>
@@ -46,8 +51,8 @@ const ItemContainer = styled.li`
   grid-template-columns: 0.2fr 1.6fr 0.2fr 0.2fr;
   grid-template-rows: 0.4fr 0.4fr 0 0;
   grid-template-areas:
-    "itemquantity itemname details mark"
-    "itemquantity itemcategory edit delete";
+    "itemquantity itemname details edit"
+    "itemquantity itemcategory mark delete";
   border: 1px solid #362f23;
   padding: 0;
   margin: 6px;
@@ -111,19 +116,27 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: #362f23;
   padding: 2px 0 0 6px;
+  margin-left: 4px;
   font-size: 12px;
+`;
+
+const StyledCheckBox = styled.input`
+  grid-area: mark;
+  width: 10px;
+  height: 10px;
+  margin-top: 4px;
+`;
+
+const StyledCheckboxLabel = styled.label`
+  grid-area: mark;
+  font-size: 10px;
+  margin: 4px 0 0 12px;
 `;
 
 const DeleteButton = styled.button`
   grid-area: delete;
   border: none;
   background-color: transparent;
-`;
-
-const EditIcon = styled(Edit)`
-  width: 20px;
-  height: 20px;
-  border-left: 1px dotted #362f23;
 `;
 
 const DeleteIcon = styled(Delete)`
@@ -136,7 +149,6 @@ const ConfirmDialog = styled.p`
   grid-area: itemname;
   align-items: center;
   padding: 10px 0;
-  margin: 0;
   border: none;
   background-color: transparent;
 `;
@@ -153,7 +165,7 @@ const ConfirmButton = styled.button`
 `;
 
 const CancelButton = styled.button`
-  grid-area: mark;
+  grid-area: edit;
   background-color: #ffd3d3;
   color: #000;
   border: none;

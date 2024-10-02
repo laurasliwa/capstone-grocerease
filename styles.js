@@ -7,11 +7,12 @@ export default createGlobalStyle`
   *,
   *::before,
   *::after {
+    margin: 0;
     box-sizing: border-box;
   }
 
   body {
-    margin: 0;
+
     font-family: ${nunito.style.fontFamily}, system-ui;
     background-color: #FFFAF4;
   }

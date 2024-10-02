@@ -15,6 +15,16 @@ export default function App({ Component, pageProps }) {
     setShoppingItems((prevItems) => prevItems.filter((item) => item.id !== id));
   }
 
+  function handleTogglePurchased(id) {
+    setShoppingItems(
+      shoppingItems.map((shoppingItem) =>
+        shoppingItem.id === id
+          ? { ...shoppingItem, isPurchased: !shoppingItem.isPurchased }
+          : shoppingItem
+      )
+    );
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -22,6 +32,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         onCreateItem={handleCreateItem}
         onDeleteItem={handleDeleteItem}
+        onTogglePurchased={handleTogglePurchased}
         shoppingItems={shoppingItems}
       />
     </>

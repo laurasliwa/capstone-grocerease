@@ -6,6 +6,7 @@ export default function HomePage({
   shoppingItems,
   onCreateItem,
   onDeleteItem,
+  onTogglePurchased,
 }) {
   return (
     <>
@@ -23,6 +24,7 @@ export default function HomePage({
         <ShoppingItemList
           shoppingItems={shoppingItems}
           onDeleteItem={onDeleteItem}
+          onTogglePurchased={onTogglePurchased}
         />
         {shoppingItems.length === 0 && (
           <StyledMessage>
