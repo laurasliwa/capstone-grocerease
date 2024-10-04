@@ -29,7 +29,7 @@ export default function ShoppingItem({
       ) : (
         <>
           <ItemQuantity>{quantity}</ItemQuantity>
-          <ItemName>{name}</ItemName>
+          <ItemName $isPurchased={isPurchased}>{name}</ItemName>
           <ItemCategory>{category}</ItemCategory>
           <StyledLink href={`/${id}`}>Details</StyledLink>
           <StyledCheckBox
@@ -96,6 +96,7 @@ const ItemName = styled.span`
   margin: 0.6rem 0 0 0;
   font-size: 1.08rem;
   list-style: none;
+  text-decoration: ${(props) => (props.$isPurchased ? "line-through" : "none")};
 `;
 
 const ItemCategory = styled.span`

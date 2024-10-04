@@ -8,8 +8,8 @@ export default function HomePage({
   onDeleteItem,
   handleTogglePurchased,
 }) {
-  const purchasedItems = shoppingItems.filter((item) => !item.isPurchased);
-  const notPurchasedItems = shoppingItems.filter((item) => item.isPurchased);
+  const purchasedItems = shoppingItems.filter((item) => item.isPurchased);
+  const notPurchasedItems = shoppingItems.filter((item) => !item.isPurchased);
 
   return (
     <>

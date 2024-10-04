@@ -6,7 +6,7 @@
     "quantity": 2,
     "category": "Dairy",
     "comment": "Low-fat, 1 litre each, prefer brand A",
-    "isPurchased": "false"
+    "isPurchased": false
   },
   {
     "id": "2",
@@ -15,7 +15,7 @@
     "quantity": 1,
     "category": "Bakery",
     "comment": "Whole grain, large loaf, no seeds",
-    "isPurchased": "false"
+    "isPurchased": false
   },
   {
     "id": "3",
@@ -24,7 +24,7 @@
     "quantity": 6,
     "category": "Fruits",
     "comment": "Organic, medium size, prefer Gala variety",
-    "isPurchased": "false"
+    "isPurchased": false
   },
   {
     "id": "4",
@@ -33,7 +33,7 @@
     "quantity": 5,
     "category": "Vegetables",
     "comment": "Fresh, large size, from local farm if possible",
-    "isPurchased": "false"
+    "isPurchased": false
   },
   {
     "id": "5",
@@ -42,7 +42,7 @@
     "quantity": 3,
     "category": "Meat",
     "comment": "Boneless, skinless, around 200g each",
-    "isPurchased": "false"
+    "isPurchased": false
   },
   {
     "id": "6",
@@ -51,7 +51,7 @@
     "quantity": 2,
     "category": "Beverages",
     "comment": "No pulp, 1.5 litres each, prefer brand B",
-    "isPurchased": "false"
+    "isPurchased": false
   },
   {
     "id": "7",
@@ -60,7 +60,7 @@
     "quantity": 1,
     "category": "Snacks",
     "comment": "Salted, large bag, prefer brand C",
-    "isPurchased": "false"
+    "isPurchased": false
   },
   {
     "id": "8",
@@ -69,7 +69,7 @@
     "quantity": 1,
     "category": "Household",
     "comment": "Lemon scented, 500ml, eco-friendly",
-    "isPurchased": "false"
+    "isPurchased": false
   },
   {
     "id": "9",
@@ -78,7 +78,7 @@
     "quantity": 1,
     "category": "Personal Care",
     "comment": "For dry hair, 250ml, prefer brand D",
-    "isPurchased": "false"
+    "isPurchased": false
   },
   {
     "id": "10",
@@ -87,6 +87,6 @@
     "quantity": 2,
     "category": "Household",
     "comment": "Extra absorbent, 6 rolls each pack, prefer brand E",
-    "isPurchased": "false"
+    "isPurchased": false
   }
 ]
