@@ -8,6 +8,9 @@ export default function HomePage({
   onDeleteItem,
   handleTogglePurchased,
 }) {
+  const purchasedItems = shoppingItems.filter((item) => !item.isPurchased);
+  const notPurchasedItems = shoppingItems.filter((item) => item.isPurchased);
+
   return (
     <>
       <StyledHeader>
@@ -17,24 +20,24 @@ export default function HomePage({
         <ListHeader>
           <StyledListName>Shopping List</StyledListName>
           <StyledTotalItems>
-            {shoppingItems.length} items total{" "}
+            {notPurchasedItems.length} items to buy{" "}
           </StyledTotalItems>
         </ListHeader>
         <Form onCreateItem={onCreateItem} />
         <ShoppingItemList
-          shoppingItems={shoppingItems}
+          shoppingItems={notPurchasedItems}
           onDeleteItem={onDeleteItem}
           handleTogglePurchased={handleTogglePurchased}
         />
-        {shoppingItems.length === 0 && (
+        {notPurchasedItems.length === 0 && (
           <StyledMessage>
             I feel so empty <span>🥺</span> Add new items with the form above.
           </StyledMessage>
         )}
         <h4>Purchased items</h4>
-        {shoppingItems.length} items total{" "}
+        {purchasedItems.length} items purchased{" "}
         <ShoppingItemList
-          shoppingItems={shoppingItems}
+          shoppingItems={purchasedItems}
           onDeleteItem={onDeleteItem}
           handleTogglePurchased={handleTogglePurchased}
         />

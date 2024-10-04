@@ -6,9 +6,6 @@ export default function ShoppingItemList({
   onDeleteItem,
   handleTogglePurchased,
 }) {
-  const boughtShoppingItems = shoppingItems.filter(
-    (shoppingItem) => shoppingItem.isPurchased
-  );
   return (
     <>
       <StyledItemList>
