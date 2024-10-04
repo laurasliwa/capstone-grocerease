@@ -4,8 +4,11 @@ import styled from "styled-components";
 export default function ShoppingItemList({
   shoppingItems,
   onDeleteItem,
-  onTogglePurchased,
+  handleTogglePurchased,
 }) {
+  const boughtShoppingItems = shoppingItems.filter(
+    (shoppingItem) => shoppingItem.isPurchased
+  );
   return (
     <>
       <StyledItemList>
@@ -18,12 +21,15 @@ export default function ShoppingItemList({
               category={shoppingItem.category}
               id={shoppingItem.id}
               onDeleteItem={onDeleteItem}
-              onTogglePurchased={onTogglePurchased}
+              onTogglePurchased={handleTogglePurchased}
             />
           );
         })}
       </StyledItemList>
-      <StyledPurchasedList></StyledPurchasedList>
+      <StyledPurchasedList>
+        <h4>Purchased items</h4>
+        {boughtShoppingItems.length} items total{" "}
+      </StyledPurchasedList>
     </>
   );
 }

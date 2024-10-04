@@ -5,6 +5,7 @@ import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
   const [shoppingItems, setShoppingItems] = useState(shoppingItemsData);
+  const [isPurchased, setIsPurchased] = useState(false);
 
   function handleCreateItem(newItem) {
     const itemWithId = { ...newItem, id: uid(), imageUrl: "placeholder.jpg" };
@@ -16,13 +17,12 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleTogglePurchased(id) {
-    setShoppingItems(
-      shoppingItems.map((shoppingItem) =>
-        shoppingItem.id === id
-          ? { ...shoppingItem, isPurchased: !shoppingItem.isPurchased }
-          : shoppingItem
-      )
+    const purchasedShoppingItems = shoppingItems.map((shoppingItem) =>
+      shoppingItem.id === id
+        ? { ...shoppingItem, isPurchased: !shoppingItem.isPurchased }
+        : shoppingItem
     );
+    setShoppingItems(purchasedShoppingItems);
   }
 
   return (
