@@ -5,10 +5,14 @@ import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
   const [shoppingItems, setShoppingItems] = useState(shoppingItemsData);
-  const [isPurchased, setIsPurchased] = useState(false);
 
   function handleCreateItem(newItem) {
-    const itemWithId = { ...newItem, id: uid(), imageUrl: "placeholder.jpg" };
+    const itemWithId = {
+      ...newItem,
+      id: uid(),
+      imageUrl: "placeholder.jpg",
+      isPurchased: false,
+    };
     setShoppingItems((prevItems) => [itemWithId, ...prevItems]);
   }
 
@@ -17,14 +21,15 @@ export default function App({ Component, pageProps }) {
   }
 
   function handleTogglePurchased(id) {
-    const purchasedShoppingItems = shoppingItems.map((shoppingItem) =>
-      shoppingItem.id === id
-        ? { ...shoppingItem, isPurchased: !shoppingItem.isPurchased }
-        : shoppingItem
+    setShoppingItems(
+      shoppingItems.map((shoppingItem) =>
+        shoppingItem.id === id
+          ? { ...shoppingItem, isPurchased: !shoppingItem.isPurchased }
+          : shoppingItem
+      )
     );
-    setShoppingItems(purchasedShoppingItems);
+    console.log("Item to toggle Like", id);
   }
-
   return (
     <>
       <GlobalStyle />
@@ -32,7 +37,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         onCreateItem={handleCreateItem}
         onDeleteItem={handleDeleteItem}
-        onTogglePurchased={handleTogglePurchased}
+        handleTogglePurchased={handleTogglePurchased}
         shoppingItems={shoppingItems}
       />
     </>

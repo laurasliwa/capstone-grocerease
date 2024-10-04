@@ -20,26 +20,18 @@ export default function ShoppingItemList({
               name={shoppingItem.name}
               category={shoppingItem.category}
               id={shoppingItem.id}
+              isPurchased={shoppingItem.isPurchased}
               onDeleteItem={onDeleteItem}
-              onTogglePurchased={handleTogglePurchased}
+              handleTogglePurchased={handleTogglePurchased}
             />
           );
         })}
       </StyledItemList>
-      <StyledPurchasedList>
-        <h4>Purchased items</h4>
-        {boughtShoppingItems.length} items total{" "}
-      </StyledPurchasedList>
     </>
   );
 }
 
 const StyledItemList = styled.ul`
-  margin: 0;
-  padding: 10px;
-`;
-
-const StyledPurchasedList = styled.ul`
   margin: 0;
   padding: 10px;
 `;

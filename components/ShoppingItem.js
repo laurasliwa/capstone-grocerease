@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useState } from "react";
 import Delete from "@/public/icons/delete.svg";
-import Edit from "@/public/icons/edit.svg";
 
 export default function ShoppingItem({
   id,
@@ -10,7 +9,8 @@ export default function ShoppingItem({
   name,
   category,
   onDeleteItem,
-  onTogglePurchased,
+  handleTogglePurchased,
+  isPurchased,
 }) {
   const [isDeleteConfirmVisible, setIsDeleteConfirmVisible] = useState(false);
 
@@ -34,7 +34,7 @@ export default function ShoppingItem({
           <StyledLink href={`/${id}`}>Details</StyledLink>
           <StyledCheckBox
             type="checkbox"
-            onClick={onTogglePurchased}
+            onChange={() => handleTogglePurchased(id)}
           ></StyledCheckBox>
           <StyledCheckboxLabel>Purchased</StyledCheckboxLabel>
           <DeleteButton onClick={handleToggleDelete}>

@@ -6,7 +6,7 @@ export default function HomePage({
   shoppingItems,
   onCreateItem,
   onDeleteItem,
-  onTogglePurchased,
+  handleTogglePurchased,
 }) {
   return (
     <>
@@ -24,13 +24,20 @@ export default function HomePage({
         <ShoppingItemList
           shoppingItems={shoppingItems}
           onDeleteItem={onDeleteItem}
-          onTogglePurchased={onTogglePurchased}
+          handleTogglePurchased={handleTogglePurchased}
         />
         {shoppingItems.length === 0 && (
           <StyledMessage>
             I feel so empty <span>🥺</span> Add new items with the form above.
           </StyledMessage>
         )}
+        <h4>Purchased items</h4>
+        {shoppingItems.length} items total{" "}
+        <ShoppingItemList
+          shoppingItems={shoppingItems}
+          onDeleteItem={onDeleteItem}
+          handleTogglePurchased={handleTogglePurchased}
+        />
       </main>
     </>
   );
