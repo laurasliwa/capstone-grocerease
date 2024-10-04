@@ -28,7 +28,6 @@ export default function App({ Component, pageProps }) {
           : shoppingItem
       )
     );
-    console.log("Item to toggle Like", id);
   }
   return (
     <>

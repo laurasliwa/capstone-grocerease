@@ -34,6 +34,7 @@ export default function ShoppingItem({
           <StyledLink href={`/${id}`}>Details</StyledLink>
           <StyledCheckBox
             type="checkbox"
+            defaultChecked={isPurchased}
             onChange={() => handleTogglePurchased(id)}
           ></StyledCheckBox>
           <StyledCheckboxLabel>Purchased</StyledCheckboxLabel>
