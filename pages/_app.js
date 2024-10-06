@@ -22,11 +22,13 @@ export default function App({ Component, pageProps }) {
 
   function handleTogglePurchased(id) {
     setShoppingItems(
-      shoppingItems.map((shoppingItem) =>
-        shoppingItem.id === id
-          ? { ...shoppingItem, isPurchased: !shoppingItem.isPurchased }
-          : shoppingItem
-      )
+      shoppingItems
+        .map((shoppingItem) =>
+          shoppingItem.id === id
+            ? { ...shoppingItem, isPurchased: !shoppingItem.isPurchased }
+            : shoppingItem
+        )
+        .sort((a, b) => a.isPurchased - b.isPurchased)
     );
   }
   return (
