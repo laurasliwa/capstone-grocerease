@@ -1,7 +1,11 @@
 import ShoppingItem from "./ShoppingItem";
 import styled from "styled-components";
 
-export default function ShoppingItemList({ shoppingItems, onDeleteItem }) {
+export default function ShoppingItemList({
+  shoppingItems,
+  onDeleteItem,
+  handleTogglePurchased,
+}) {
   return (
     <>
       <StyledItemList>
@@ -13,7 +17,9 @@ export default function ShoppingItemList({ shoppingItems, onDeleteItem }) {
               name={shoppingItem.name}
               category={shoppingItem.category}
               id={shoppingItem.id}
+              isPurchased={shoppingItem.isPurchased}
               onDeleteItem={onDeleteItem}
+              onTogglePurchased={handleTogglePurchased}
             />
           );
         })}

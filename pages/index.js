@@ -6,7 +6,11 @@ export default function HomePage({
   shoppingItems,
   onCreateItem,
   onDeleteItem,
+  handleTogglePurchased,
 }) {
+  const purchasedItems = shoppingItems.filter((item) => item.isPurchased);
+  const unPurchasedItems = shoppingItems.filter((item) => !item.isPurchased);
+
   return (
     <>
       <StyledHeader>
@@ -16,19 +20,33 @@ export default function HomePage({
         <ListHeader>
           <StyledListName>Shopping List</StyledListName>
           <StyledTotalItems>
-            {shoppingItems.length} items total{" "}
+            {unPurchasedItems.length} items to buy{" "}
           </StyledTotalItems>
         </ListHeader>
         <Form onCreateItem={onCreateItem} />
         <ShoppingItemList
-          shoppingItems={shoppingItems}
+          shoppingItems={unPurchasedItems}
           onDeleteItem={onDeleteItem}
+          onTogglePurchased={handleTogglePurchased}
         />
-        {shoppingItems.length === 0 && (
-          <StyledMessage>
-            I feel so empty <span>🥺</span> Add new items with the form above.
-          </StyledMessage>
+        {unPurchasedItems.length === 0 && (
+          <StyledMessageContainer>
+            <StyledMessage>
+              I feel so empty <span>🥺</span> Add new items with the form above.
+            </StyledMessage>
+          </StyledMessageContainer>
         )}
+        <StyledPurchasedHeader>
+          <StyledPurchasedName>Purchased items</StyledPurchasedName>
+          <StyledPurchasedItems>
+            {purchasedItems.length} items bought{" "}
+          </StyledPurchasedItems>
+        </StyledPurchasedHeader>
+        <ShoppingItemList
+          shoppingItems={purchasedItems}
+          onDeleteItem={onDeleteItem}
+          onTogglePurchased={handleTogglePurchased}
+        />
       </main>
     </>
   );
@@ -89,6 +107,12 @@ const StyledTotalItems = styled.p`
   margin: 8px 0 0 0;
 `;
 
+const StyledMessageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+`;
+
 const StyledMessage = styled.p`
   border: 1px solid #362f23;
   border-radius: 15px;
@@ -100,4 +124,28 @@ const StyledMessage = styled.p`
   margin: 0 26px;
   font-size: 20px;
   text-align: center;
+`;
+
+const StyledPurchasedHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 0 8px;
+  padding: 4px 8px 0 8px;
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 2px;
+  background-color: #fff4e9;
+  height: 34px;
+`;
+
+const StyledPurchasedName = styled.h3`
+  font-size: 1rem;
+  font-weight: normal;
+  color: #362f23;
+`;
+
+const StyledPurchasedItems = styled.p`
+  font-size: 1rem;
+  color: #362f23;
+  text-align: right;
 `;

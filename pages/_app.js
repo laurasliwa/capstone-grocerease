@@ -7,7 +7,12 @@ export default function App({ Component, pageProps }) {
   const [shoppingItems, setShoppingItems] = useState(shoppingItemsData);
 
   function handleCreateItem(newItem) {
-    const itemWithId = { ...newItem, id: uid(), imageUrl: "placeholder.jpg" };
+    const itemWithId = {
+      ...newItem,
+      id: uid(),
+      imageUrl: "placeholder.jpg",
+      isPurchased: false,
+    };
     setShoppingItems((prevItems) => [itemWithId, ...prevItems]);
   }
 
@@ -15,6 +20,17 @@ export default function App({ Component, pageProps }) {
     setShoppingItems((prevItems) => prevItems.filter((item) => item.id !== id));
   }
 
+  function handleTogglePurchased(id) {
+    setShoppingItems(
+      shoppingItems
+        .map((shoppingItem) =>
+          shoppingItem.id === id
+            ? { ...shoppingItem, isPurchased: !shoppingItem.isPurchased }
+            : shoppingItem
+        )
+        .sort((a, b) => a.isPurchased - b.isPurchased)
+    );
+  }
   return (
     <>
       <GlobalStyle />
@@ -22,6 +38,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         onCreateItem={handleCreateItem}
         onDeleteItem={handleDeleteItem}
+        onTogglePurchased={handleTogglePurchased}
         shoppingItems={shoppingItems}
       />
     </>

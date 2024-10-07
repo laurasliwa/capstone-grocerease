@@ -9,6 +9,8 @@ export default function ShoppingItem({
   name,
   category,
   onDeleteItem,
+  handleTogglePurchased,
+  isPurchased,
 }) {
   const [isDeleteConfirmVisible, setIsDeleteConfirmVisible] = useState(false);
 
@@ -27,12 +29,18 @@ export default function ShoppingItem({
       ) : (
         <>
           <ItemQuantity>{quantity}</ItemQuantity>
-          <ItemName>{name}</ItemName>
+          <ItemName $isPurchased={isPurchased}>{name}</ItemName>
           <ItemCategory>{category}</ItemCategory>
           <StyledLink href={`/${id}`}>Details</StyledLink>
-          <StyledButton onClick={handleToggleDelete}>
+          <StyledCheckBox
+            type="checkbox"
+            defaultChecked={isPurchased}
+            onChange={() => handleTogglePurchased(id)}
+          ></StyledCheckBox>
+          <StyledCheckboxLabel>Purchased</StyledCheckboxLabel>
+          <DeleteButton onClick={handleToggleDelete}>
             <DeleteIcon />
-          </StyledButton>
+          </DeleteButton>
         </>
       )}
     </ItemContainer>
@@ -44,8 +52,8 @@ const ItemContainer = styled.li`
   grid-template-columns: 0.2fr 1.6fr 0.2fr 0.2fr;
   grid-template-rows: 0.4fr 0.4fr 0 0;
   grid-template-areas:
-    "itemquantity itemname details mark"
-    "itemquantity itemcategory edit delete";
+    "itemquantity itemname details edit"
+    "itemquantity itemcategory mark delete";
   border: 1px solid #362f23;
   padding: 0;
   margin: 6px;
@@ -89,6 +97,7 @@ const ItemName = styled.span`
   margin: 0.6rem 0 0 0;
   font-size: 1.08rem;
   list-style: none;
+  text-decoration: ${(props) => (props.$isPurchased ? "line-through" : "none")};
 `;
 
 const ItemCategory = styled.span`
@@ -109,10 +118,24 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: #362f23;
   padding: 2px 0 0 6px;
+  margin-left: 12px;
   font-size: 12px;
 `;
 
-const StyledButton = styled.button`
+const StyledCheckBox = styled.input`
+  grid-area: mark;
+  width: 12px;
+  height: 12px;
+  margin-top: 4px;
+`;
+
+const StyledCheckboxLabel = styled.label`
+  grid-area: mark;
+  font-size: 12px;
+  margin: 3px 0 0 14px;
+`;
+
+const DeleteButton = styled.button`
   grid-area: delete;
   border: none;
   background-color: transparent;
@@ -128,7 +151,6 @@ const ConfirmDialog = styled.p`
   grid-area: itemname;
   align-items: center;
   padding: 10px 0;
-  margin: 0;
   border: none;
   background-color: transparent;
 `;
@@ -145,7 +167,7 @@ const ConfirmButton = styled.button`
 `;
 
 const CancelButton = styled.button`
-  grid-area: mark;
+  grid-area: edit;
   background-color: #ffd3d3;
   color: #000;
   border: none;
