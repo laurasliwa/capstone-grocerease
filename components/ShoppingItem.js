@@ -9,7 +9,7 @@ export default function ShoppingItem({
   name,
   category,
   onDeleteItem,
-  handleTogglePurchased,
+  onTogglePurchased,
   isPurchased,
 }) {
   const [isDeleteConfirmVisible, setIsDeleteConfirmVisible] = useState(false);
@@ -35,7 +35,7 @@ export default function ShoppingItem({
           <StyledCheckBox
             type="checkbox"
             defaultChecked={isPurchased}
-            onChange={() => handleTogglePurchased(id)}
+            onChange={() => onTogglePurchased(id)}
           ></StyledCheckBox>
           <StyledCheckboxLabel>Purchased</StyledCheckboxLabel>
           <DeleteButton onClick={handleToggleDelete}>

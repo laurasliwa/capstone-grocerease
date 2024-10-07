@@ -6,7 +6,7 @@ export default function HomePage({
   shoppingItems,
   onCreateItem,
   onDeleteItem,
-  handleTogglePurchased,
+  onTogglePurchased,
 }) {
   const purchasedItems = shoppingItems.filter((item) => item.isPurchased);
   const unPurchasedItems = shoppingItems.filter((item) => !item.isPurchased);
@@ -27,7 +27,7 @@ export default function HomePage({
         <ShoppingItemList
           shoppingItems={unPurchasedItems}
           onDeleteItem={onDeleteItem}
-          onTogglePurchased={handleTogglePurchased}
+          onTogglePurchased={onTogglePurchased}
         />
         {unPurchasedItems.length === 0 && (
           <StyledMessageContainer>
@@ -45,7 +45,7 @@ export default function HomePage({
         <ShoppingItemList
           shoppingItems={purchasedItems}
           onDeleteItem={onDeleteItem}
-          onTogglePurchased={handleTogglePurchased}
+          onTogglePurchased={onTogglePurchased}
         />
       </main>
     </>

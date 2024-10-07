@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function ShoppingItemList({
   shoppingItems,
   onDeleteItem,
-  handleTogglePurchased,
+  onTogglePurchased,
 }) {
   return (
     <>
@@ -19,7 +19,7 @@ export default function ShoppingItemList({
               id={shoppingItem.id}
               isPurchased={shoppingItem.isPurchased}
               onDeleteItem={onDeleteItem}
-              onTogglePurchased={handleTogglePurchased}
+              onTogglePurchased={onTogglePurchased}
             />
           );
         })}
