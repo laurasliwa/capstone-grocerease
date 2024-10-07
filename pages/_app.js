@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         onCreateItem={handleCreateItem}
         onDeleteItem={handleDeleteItem}
-        handleTogglePurchased={handleTogglePurchased}
+        onTogglePurchased={handleTogglePurchased}
         shoppingItems={shoppingItems}
       />
     </>

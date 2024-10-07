@@ -19,7 +19,7 @@ export default function ShoppingItemList({
               id={shoppingItem.id}
               isPurchased={shoppingItem.isPurchased}
               onDeleteItem={onDeleteItem}
-              handleTogglePurchased={handleTogglePurchased}
+              onTogglePurchased={handleTogglePurchased}
             />
           );
         })}
