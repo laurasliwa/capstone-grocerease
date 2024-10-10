@@ -16,6 +16,16 @@ export default function App({ Component, pageProps }) {
     setShoppingItems((prevItems) => [itemWithId, ...prevItems]);
   }
 
+  function handleEditItem(id, newItem) {
+    setShoppingItems(
+      shoppingItems.map((shoppingItem) => {
+        return shoppingItem.id === id
+          ? { ...shoppingItem, ...newItem }
+          : shoppingItem;
+      })
+    );
+  }
+
   function handleDeleteItem(id) {
     setShoppingItems((prevItems) => prevItems.filter((item) => item.id !== id));
   }
@@ -37,6 +47,7 @@ export default function App({ Component, pageProps }) {
       <Component
         {...pageProps}
         onCreateItem={handleCreateItem}
+        onEditItem={handleEditItem}
         onDeleteItem={handleDeleteItem}
         onTogglePurchased={handleTogglePurchased}
         shoppingItems={shoppingItems}

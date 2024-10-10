@@ -1,13 +1,17 @@
 import Form from "@/components/Form";
 import ShoppingItemList from "@/components/ShoppingItemList";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function HomePage({
   shoppingItems,
   onCreateItem,
   onDeleteItem,
   onTogglePurchased,
+  onEditItem,
 }) {
+  const [editItem, setEditItem] = useState(false);
+
   const purchasedItems = shoppingItems.filter((item) => item.isPurchased);
   const unPurchasedItems = shoppingItems.filter((item) => !item.isPurchased);
 
@@ -23,7 +27,9 @@ export default function HomePage({
             {unPurchasedItems.length} items to buy{" "}
           </StyledTotalItems>
         </ListHeader>
+
         <Form onCreateItem={onCreateItem} />
+
         <ShoppingItemList
           shoppingItems={unPurchasedItems}
           onDeleteItem={onDeleteItem}
