@@ -19,7 +19,7 @@ export default function HomePage({
     setEditItem(shoppingItem);
   }
 
-  function updateItem(newItem) {
+  function updateItem(newItem, shoppingItem) {
     onEditItem(shoppingItem.id, newItem);
     toggleIsEditing(null);
   }
@@ -39,7 +39,13 @@ export default function HomePage({
 
         {!editItem && <Form onCreateItem={onCreateItem} editItem={editItem} />}
 
-        {editItem && <Form onEditItem={onEditItem} editItem={editItem} />}
+        {editItem && (
+          <Form
+            onEditItem={onEditItem}
+            editItem={editItem}
+            onUpdateItem={updateItem}
+          />
+        )}
 
         <ShoppingItemList
           shoppingItems={unPurchasedItems}

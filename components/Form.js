@@ -2,7 +2,11 @@ import styled from "styled-components";
 import categories from "@/assets/categories.json";
 import { useState, useEffect } from "react";
 
-export default function CreateForm({ onCreateItem, editItem }) {
+export default function CreateForm({
+  onCreateItem,
+  editItem,
+  onToggleIsEditing,
+}) {
   const [selectedCategory, setSelectedCategory] = useState("");
   console.log(editItem);
 
@@ -83,7 +87,15 @@ export default function CreateForm({ onCreateItem, editItem }) {
         maxLength="100"
         wrap="hard"
       ></StyledCommentTextarea>
-      <StyledCreateButton>Submit</StyledCreateButton>
+      {!editItem && <StyledCreateButton>Create</StyledCreateButton>}
+      {editItem && (
+        <StyledEditButtonsBox>
+          <StyledCreateButton>Submit</StyledCreateButton>
+          <StyledCreateButton onClick={onToggleIsEditing}>
+            Cancel
+          </StyledCreateButton>
+        </StyledEditButtonsBox>
+      )}
     </StyledForm>
   );
 }
@@ -156,4 +168,10 @@ const StyledCreateButton = styled.button`
   padding: 2px 2px;
   margin: 10px 0 0 0;
   font-size: 16px;
+`;
+
+const StyledEditButtonsBox = styled.div`
+  display: flex;
+  align-self: center;
+  gap: 4px;
 `;
