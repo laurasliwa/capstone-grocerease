@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function CreateForm({
   onCreateItem,
+  onEditItem,
   editItem,
   onToggleIsEditing,
 }) {
@@ -25,14 +26,20 @@ export default function CreateForm({
     const formData = new FormData(event.target);
     const newItem = Object.fromEntries(formData);
 
-    onCreateItem(newItem);
+    if (editItem) {
+      onEditItem(editItem.id, newItem);
+    } else {
+      onCreateItem(newItem);
+    }
+
     event.target.reset();
     setSelectedCategory("");
   }
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <StyledHeader>Add new item</StyledHeader>
+      {!editItem && <StyledHeader>Add new item</StyledHeader>}
+      {editItem && <StyledHeader>Edit shopping item</StyledHeader>}
       <label htmlFor="name">Item Name</label>
       <StyledItemNameInput
         defaultValue={editItem ? editItem.name : ""}
