@@ -5,6 +5,7 @@ export default function ShoppingItemList({
   shoppingItems,
   onDeleteItem,
   onTogglePurchased,
+  onToggleIsEditing,
 }) {
   return (
     <>
@@ -20,6 +21,7 @@ export default function ShoppingItemList({
               isPurchased={shoppingItem.isPurchased}
               onDeleteItem={onDeleteItem}
               onTogglePurchased={onTogglePurchased}
+              onToggleIsEditing={() => onToggleIsEditing(shoppingItem)}
             />
           );
         })}

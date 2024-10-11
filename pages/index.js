@@ -10,10 +10,19 @@ export default function HomePage({
   onTogglePurchased,
   onEditItem,
 }) {
-  const [editItem, setEditItem] = useState(false);
-
   const purchasedItems = shoppingItems.filter((item) => item.isPurchased);
   const unPurchasedItems = shoppingItems.filter((item) => !item.isPurchased);
+
+  const [editItem, setEditItem] = useState(null);
+
+  function toggleIsEditing(shoppingItem) {
+    setEditItem(shoppingItem);
+  }
+
+  function updateItem(newItem) {
+    onEditItem(shoppingItem.id, newItem);
+    toggleIsEditing(null);
+  }
 
   return (
     <>
@@ -28,13 +37,17 @@ export default function HomePage({
           </StyledTotalItems>
         </ListHeader>
 
-        <Form onCreateItem={onCreateItem} />
+        {!editItem && <Form onCreateItem={onCreateItem} editItem={editItem} />}
+
+        {editItem && <Form onEditItem={onEditItem} editItem={editItem} />}
 
         <ShoppingItemList
           shoppingItems={unPurchasedItems}
           onDeleteItem={onDeleteItem}
           onTogglePurchased={onTogglePurchased}
+          onToggleIsEditing={toggleIsEditing}
         />
+
         {unPurchasedItems.length === 0 && (
           <StyledMessageContainer>
             <StyledMessage>

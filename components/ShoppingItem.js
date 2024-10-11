@@ -12,7 +12,7 @@ export default function ShoppingItem({
   onDeleteItem,
   onTogglePurchased,
   isPurchased,
-  handleEditItem,
+  onToggleIsEditing,
 }) {
   const [isDeleteConfirmVisible, setIsDeleteConfirmVisible] = useState(false);
 
@@ -34,7 +34,7 @@ export default function ShoppingItem({
           <ItemName $isPurchased={isPurchased}>{name}</ItemName>
           <ItemCategory>{category}</ItemCategory>
           <StyledLink href={`/${id}`}>Details</StyledLink>
-          <EditButton onClick={handleEditItem}>
+          <EditButton onClick={onToggleIsEditing}>
             <EditIcon />
           </EditButton>
           <StyledCheckBox

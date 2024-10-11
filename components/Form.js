@@ -1,9 +1,16 @@
 import styled from "styled-components";
 import categories from "@/assets/categories.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function CreateForm({ onCreateItem }) {
+export default function CreateForm({ onCreateItem, editItem }) {
   const [selectedCategory, setSelectedCategory] = useState("");
+  console.log(editItem);
+
+  useEffect(() => {
+    if (editItem) {
+      setSelectedCategory(editItem.category);
+    }
+  }, [editItem]);
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -24,6 +31,7 @@ export default function CreateForm({ onCreateItem }) {
       <StyledHeader>Add new item</StyledHeader>
       <label htmlFor="name">Item Name</label>
       <StyledItemNameInput
+        defaultValue={editItem ? editItem.name : ""}
         name="name"
         id="name"
         type="text"
@@ -55,6 +63,7 @@ export default function CreateForm({ onCreateItem }) {
         <StyledQuantityInputContainer>
           <label htmlFor="quantity">Quantity</label>
           <StyledQuantityInput
+            defaultValue={editItem ? editItem.quantity : ""}
             name="quantity"
             id="quantity"
             type="number"
@@ -67,13 +76,14 @@ export default function CreateForm({ onCreateItem }) {
       </FlexContainer>
       <label htmlFor="comment">Comment</label>
       <StyledCommentTextarea
+        defaultValue={editItem ? editItem.comment : ""}
         name="comment"
         id="comment"
         placeholder="(Optional)"
         maxLength="100"
         wrap="hard"
       ></StyledCommentTextarea>
-      <StyledCreateButton>Create</StyledCreateButton>
+      <StyledCreateButton>Submit</StyledCreateButton>
     </StyledForm>
   );
 }
