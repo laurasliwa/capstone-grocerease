@@ -32,78 +32,81 @@ export default function CreateForm({
       onCreateItem(newItem);
     }
 
-    event.target.reset();
-    setSelectedCategory("");
+    onToggleIsEditing(null);
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      {!editItem && <StyledHeader>Add new item</StyledHeader>}
-      {editItem && <StyledHeader>Edit shopping item</StyledHeader>}
-      <label htmlFor="name">Item Name</label>
-      <StyledItemNameInput
-        defaultValue={editItem ? editItem.name : ""}
-        name="name"
-        id="name"
-        type="text"
-        placeholder="(Required)"
-        maxLength="20"
-        required
-      />
-      <FlexContainer>
-        <StyledCategorySelectContainer>
-          <label htmlFor="category">Category</label>
-          <StyledCategorySelect
-            name="category"
-            id="category"
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-            required
-          >
-            <option value="">---Choose a category---</option>
-            {categories.map((category) => {
-              return (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              );
-            })}
-          </StyledCategorySelect>
-        </StyledCategorySelectContainer>
+    <>
+      <StyledForm onSubmit={handleSubmit}>
+        {!editItem && <StyledHeader>Add new item</StyledHeader>}
+        {editItem && <StyledHeader>Edit shopping item</StyledHeader>}
+        <label htmlFor="name">Item Name</label>
+        <StyledItemNameInput
+          defaultValue={editItem ? editItem.name : ""}
+          name="name"
+          id="name"
+          type="text"
+          placeholder="(Required)"
+          maxLength="20"
+          required
+        />
+        <FlexContainer>
+          <StyledCategorySelectContainer>
+            <label htmlFor="category">Category</label>
+            <StyledCategorySelect
+              name="category"
+              id="category"
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+              required
+            >
+              <option value="">---Choose a category---</option>
+              {categories.map((category) => {
+                return (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                );
+              })}
+            </StyledCategorySelect>
+          </StyledCategorySelectContainer>
 
-        <StyledQuantityInputContainer>
-          <label htmlFor="quantity">Quantity</label>
-          <StyledQuantityInput
-            defaultValue={editItem ? editItem.quantity : ""}
-            name="quantity"
-            id="quantity"
-            type="number"
-            placeholder="(Required)"
-            min="0"
-            max="999"
-            required
-          />
-        </StyledQuantityInputContainer>
-      </FlexContainer>
-      <label htmlFor="comment">Comment</label>
-      <StyledCommentTextarea
-        defaultValue={editItem ? editItem.comment : ""}
-        name="comment"
-        id="comment"
-        placeholder="(Optional)"
-        maxLength="100"
-        wrap="hard"
-      ></StyledCommentTextarea>
-      {!editItem && <StyledCreateButton>Create</StyledCreateButton>}
+          <StyledQuantityInputContainer>
+            <label htmlFor="quantity">Quantity</label>
+            <StyledQuantityInput
+              defaultValue={editItem ? editItem.quantity : ""}
+              name="quantity"
+              id="quantity"
+              type="number"
+              placeholder="(Required)"
+              min="0"
+              max="999"
+              required
+            />
+          </StyledQuantityInputContainer>
+        </FlexContainer>
+        <label htmlFor="comment">Comment</label>
+        <StyledCommentTextarea
+          defaultValue={editItem ? editItem.comment : ""}
+          name="comment"
+          id="comment"
+          placeholder="(Optional)"
+          maxLength="100"
+          wrap="hard"
+        ></StyledCommentTextarea>
+        {!editItem && <StyledCreateButton>Create</StyledCreateButton>}
+        {editItem && <StyledCreateButton>Submit</StyledCreateButton>}
+      </StyledForm>
       {editItem && (
-        <StyledEditButtonsBox>
-          <StyledCreateButton>Submit</StyledCreateButton>
-          <StyledCreateButton onClick={onToggleIsEditing}>
-            Cancel
-          </StyledCreateButton>
-        </StyledEditButtonsBox>
+        <StyledCreateButton
+          onClick={() => {
+            onToggleIsEditing(null);
+          }}
+        >
+          Cancel
+        </StyledCreateButton>
       )}
-    </StyledForm>
+    </>
   );
 }
 
