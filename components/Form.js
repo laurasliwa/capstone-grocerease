@@ -95,16 +95,16 @@ export default function CreateForm({
           wrap="hard"
         ></StyledCommentTextarea>
         {!editItem && <StyledCreateButton>Create</StyledCreateButton>}
-        {editItem && <StyledCreateButton>Submit</StyledCreateButton>}
+        {editItem && <StyledSubmitButton>Submit</StyledSubmitButton>}
       </StyledForm>
       {editItem && (
-        <StyledCreateButton
+        <StyledCancelButton
           onClick={() => {
             onToggleIsEditing(null);
           }}
         >
           Cancel
-        </StyledCreateButton>
+        </StyledCancelButton>
       )}
     </>
   );
@@ -180,8 +180,30 @@ const StyledCreateButton = styled.button`
   font-size: 16px;
 `;
 
-const StyledEditButtonsBox = styled.div`
-  display: flex;
-  align-self: center;
-  gap: 4px;
+const StyledSubmitButton = styled.button`
+  position: relative;
+  left: 110px;
+  border: 1px solid #362f23;
+  border-radius: 15px;
+  height: 1.8rem;
+  width: 4.2rem;
+  background-color: #fff4e9;
+  color: #362f23;
+  padding: 2px 2px;
+  margin: 10px 0 0 0;
+  font-size: 16px;
+`;
+
+const StyledCancelButton = styled.button`
+  position: relative;
+  bottom: 40px;
+  left: 190px;
+  border: 1px solid #362f23;
+  border-radius: 15px;
+  height: 1.8rem;
+  width: 4.2rem;
+  background-color: #fff4e9;
+  color: #362f23;
+  padding: 2px 2px;
+  font-size: 16px;
 `;
