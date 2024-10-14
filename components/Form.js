@@ -9,7 +9,6 @@ export default function CreateForm({
   onToggleIsEditing,
 }) {
   const [selectedCategory, setSelectedCategory] = useState("");
-  console.log(editItem);
 
   useEffect(() => {
     if (editItem) {
@@ -36,7 +35,7 @@ export default function CreateForm({
   }
 
   return (
-    <>
+    <FormContainer>
       <StyledForm onSubmit={handleSubmit}>
         {!editItem && <StyledHeader>Add new item</StyledHeader>}
         {editItem && <StyledHeader>Edit shopping item</StyledHeader>}
@@ -106,16 +105,19 @@ export default function CreateForm({
           Cancel
         </StyledCancelButton>
       )}
-    </>
+    </FormContainer>
   );
 }
+
+const FormContainer = styled.div`
+  margin: 70px 0 0 0;
+  padding: 10px;
+  border-bottom: 1px solid #362f23;
+`;
 
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 70px 0 0 0;
-  padding: 10px;
-  border-bottom: 1px solid #362f23;
 `;
 
 const FlexContainer = styled.div`
@@ -182,7 +184,7 @@ const StyledCreateButton = styled.button`
 
 const StyledSubmitButton = styled.button`
   position: relative;
-  left: 110px;
+  left: 145px;
   border: 1px solid #362f23;
   border-radius: 15px;
   height: 1.8rem;
@@ -196,8 +198,8 @@ const StyledSubmitButton = styled.button`
 
 const StyledCancelButton = styled.button`
   position: relative;
-  bottom: 40px;
-  left: 190px;
+  top: 4px;
+  left: 145px;
   border: 1px solid #362f23;
   border-radius: 15px;
   height: 1.8rem;
