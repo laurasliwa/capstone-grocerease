@@ -24,7 +24,6 @@ export default function ShoppingItemForm({
     event.preventDefault();
     const formData = new FormData(event.target);
     const newItem = Object.fromEntries(formData);
-    console.log(newItem);
 
     if (editItem) {
       onEditItem(editItem.id, newItem);
@@ -35,7 +34,7 @@ export default function ShoppingItemForm({
     event.target.reset();
     onToggleIsEditing(null);
   }
-
+  console.log(editItem);
   return (
     <FormContainer>
       <StyledForm onSubmit={handleSubmit}>
@@ -175,43 +174,29 @@ const StyledCommentTextarea = styled.textarea`
   white-space: pre-wrap;
 `;
 
-const StyledCreateButton = styled.button`
+const StyledButton = styled.button`
   border: 1px solid #362f23;
   border-radius: 15px;
   height: 1.8rem;
   width: 4.2rem;
+  background-color: #fff4e9;
+  color: #362f23;
+  padding: 2px 2px;
+  margin: 10px 0 0 0;
+  font-size: 16px;
+`;
+
+const StyledCreateButton = styled(StyledButton)`
   align-self: center;
-  background-color: #fff4e9;
-  color: #362f23;
-  padding: 2px 2px;
-  margin: 10px 0 0 0;
-  font-size: 16px;
 `;
 
-const StyledSubmitButton = styled.button`
+const StyledSubmitButton = styled(StyledButton)`
   position: relative;
   left: 145px;
-  border: 1px solid #362f23;
-  border-radius: 15px;
-  height: 1.8rem;
-  width: 4.2rem;
-  background-color: #fff4e9;
-  color: #362f23;
-  padding: 2px 2px;
-  margin: 10px 0 0 0;
-  font-size: 16px;
 `;
 
-const StyledCancelButton = styled.button`
+const StyledCancelButton = styled(StyledButton)`
   position: relative;
-  top: 4px;
   left: 145px;
-  border: 1px solid #362f23;
-  border-radius: 15px;
-  height: 1.8rem;
-  width: 4.2rem;
-  background-color: #fff4e9;
-  color: #362f23;
-  padding: 2px 2px;
-  font-size: 16px;
+  bottom: 4px;
 `;
