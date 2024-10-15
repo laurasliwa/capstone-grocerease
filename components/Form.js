@@ -192,11 +192,11 @@ const StyledCreateButton = styled(StyledButton)`
 
 const StyledSubmitButton = styled(StyledButton)`
   position: relative;
-  left: 145px;
+  left: 105px;
 `;
 
 const StyledCancelButton = styled(StyledButton)`
-  position: relative;
-  left: 145px;
-  bottom: 4px;
+  position: absolute;
+  left: 185px;
+  top: 304px;
 `;
