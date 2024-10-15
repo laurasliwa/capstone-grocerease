@@ -1,29 +1,30 @@
 import styled from "styled-components";
 import categories from "@/assets/categories.json";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ShoppingItemForm({
   onCreateItem,
   onEditItem,
-  editItem,
+  editItem = null,
   onToggleIsEditing,
 }) {
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(
+    editItem ? editItem.category : ""
+  );
 
-  // useEffect(() => {
-  //   if (editItem) {
-  //     setSelectedCategory(editItem.category);
-  //   }
-  // }, [editItem]);
-
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-  };
+  useEffect(() => {
+    if (editItem) {
+      setSelectedCategory(editItem.category);
+    } else {
+      setSelectedCategory("");
+    }
+  }, [editItem]);
 
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const newItem = Object.fromEntries(formData);
+    console.log(newItem);
 
     if (editItem) {
       onEditItem(editItem.id, newItem);
@@ -31,10 +32,13 @@ export default function ShoppingItemForm({
       onCreateItem(newItem);
     }
 
-    event.target.reset();
     onToggleIsEditing(null);
   }
-  console.log(editItem);
+
+  function handleCategoryChange(event) {
+    setSelectedCategory(event.target.value);
+  }
+
   return (
     <FormContainer>
       <StyledForm onSubmit={handleSubmit}>
@@ -57,8 +61,8 @@ export default function ShoppingItemForm({
             <StyledCategorySelect
               name="category"
               id="category"
-              defaultValue={editItem ? editItem.category : ""}
-              // onChange={handleCategoryChange}
+              value={selectedCategory}
+              onChange={handleCategoryChange}
               required
             >
               <option value="">---Choose a category---</option>
