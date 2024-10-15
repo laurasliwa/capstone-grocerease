@@ -2,7 +2,7 @@ import styled from "styled-components";
 import categories from "@/assets/categories.json";
 import { useState, useEffect } from "react";
 
-export default function CreateForm({
+export default function ShoppingItemForm({
   onCreateItem,
   onEditItem,
   editItem,
@@ -10,11 +10,11 @@ export default function CreateForm({
 }) {
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  useEffect(() => {
-    if (editItem) {
-      setSelectedCategory(editItem.category);
-    }
-  }, [editItem]);
+  // useEffect(() => {
+  //   if (editItem) {
+  //     setSelectedCategory(editItem.category);
+  //   }
+  // }, [editItem]);
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -24,6 +24,7 @@ export default function CreateForm({
     event.preventDefault();
     const formData = new FormData(event.target);
     const newItem = Object.fromEntries(formData);
+    console.log(newItem);
 
     if (editItem) {
       onEditItem(editItem.id, newItem);
@@ -31,14 +32,16 @@ export default function CreateForm({
       onCreateItem(newItem);
     }
 
+    event.target.reset();
     onToggleIsEditing(null);
   }
 
   return (
     <FormContainer>
       <StyledForm onSubmit={handleSubmit}>
-        {!editItem && <StyledHeader>Add new item</StyledHeader>}
-        {editItem && <StyledHeader>Edit shopping item</StyledHeader>}
+        <StyledHeader>
+          {editItem ? "Edit shopping item" : "Add new item"}
+        </StyledHeader>
         <label htmlFor="name">Item Name</label>
         <StyledItemNameInput
           defaultValue={editItem ? editItem.name : ""}
@@ -55,8 +58,8 @@ export default function CreateForm({
             <StyledCategorySelect
               name="category"
               id="category"
-              value={selectedCategory}
-              onChange={handleCategoryChange}
+              defaultValue={editItem ? editItem.category : ""}
+              // onChange={handleCategoryChange}
               required
             >
               <option value="">---Choose a category---</option>
@@ -92,9 +95,12 @@ export default function CreateForm({
           placeholder="(Optional)"
           maxLength="100"
           wrap="hard"
-        ></StyledCommentTextarea>
-        {!editItem && <StyledCreateButton>Create</StyledCreateButton>}
-        {editItem && <StyledSubmitButton>Submit</StyledSubmitButton>}
+        />
+        {editItem ? (
+          <StyledSubmitButton>Submit</StyledSubmitButton>
+        ) : (
+          <StyledCreateButton>Create</StyledCreateButton>
+        )}
       </StyledForm>
       {editItem && (
         <StyledCancelButton
