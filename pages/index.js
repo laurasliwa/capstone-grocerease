@@ -70,6 +70,7 @@ export default function HomePage({
           shoppingItems={purchasedItems}
           onDeleteItem={onDeleteItem}
           onTogglePurchased={onTogglePurchased}
+          onToggleIsEditing={toggleIsEditing}
         />
       </main>
     </>
