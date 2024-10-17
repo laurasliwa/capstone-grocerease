@@ -1,10 +1,13 @@
 import GlobalStyle from "../styles";
-import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import shoppingItemsData from "@/assets/shopping-items.json";
 import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
-  const [shoppingItems, setShoppingItems] = useState(shoppingItemsData);
+  const [shoppingItems, setShoppingItems] = useLocalStorageState(
+    "shoppingItems",
+    { defaultValue: shoppingItemsData }
+  );
 
   function handleCreateItem(newItem) {
     const itemWithId = {
