@@ -1,53 +1,36 @@
 import styled from "styled-components";
 import categories from "@/assets/categories.json";
-import { useEffect, useState } from "react";
 
 export default function ShoppingItemForm({
-  onCreateItem,
-  onEditItem,
-  editItem = null,
-  onToggleIsEditing,
+  onSubmitItem,
+  editItem,
+  mode,
+  onChangeMode,
 }) {
-  const [selectedCategory, setSelectedCategory] = useState(
-    editItem ? editItem.category : ""
-  );
-
-  useEffect(() => {
-    if (editItem) {
-      setSelectedCategory(editItem.category);
-    } else {
-      setSelectedCategory("");
-    }
-  }, [editItem]);
-
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const newItem = Object.fromEntries(formData);
     console.log(newItem);
 
-    if (editItem) {
-      onEditItem(editItem.id, newItem);
+    if (mode === "add") {
+      onSubmitItem(newItem);
     } else {
-      onCreateItem(newItem);
+      onSubmitItem(editItem.id, newItem);
     }
 
-    onToggleIsEditing(null);
-  }
-
-  function handleCategoryChange(event) {
-    setSelectedCategory(event.target.value);
+    onChangeMode("default");
   }
 
   return (
     <FormContainer>
       <StyledForm onSubmit={handleSubmit}>
         <StyledHeader>
-          {editItem ? "Edit shopping item" : "Add new item"}
+          {mode === "add" ? "Add new item" : "Edit shopping item"}
         </StyledHeader>
         <label htmlFor="name">Item Name</label>
         <StyledItemNameInput
-          defaultValue={editItem ? editItem.name : ""}
+          defaultValue={mode === "edit" ? editItem.name : ""}
           name="name"
           id="name"
           type="text"
@@ -61,8 +44,7 @@ export default function ShoppingItemForm({
             <StyledCategorySelect
               name="category"
               id="category"
-              value={selectedCategory}
-              onChange={handleCategoryChange}
+              defaultValue={mode === "edit" ? editItem.category : ""}
               required
             >
               <option value="">---Choose a category---</option>
@@ -79,7 +61,7 @@ export default function ShoppingItemForm({
           <StyledQuantityInputContainer>
             <label htmlFor="quantity">Quantity</label>
             <StyledQuantityInput
-              defaultValue={editItem ? editItem.quantity : ""}
+              defaultValue={mode === "edit" ? editItem.quantity : ""}
               name="quantity"
               id="quantity"
               type="number"
@@ -92,28 +74,25 @@ export default function ShoppingItemForm({
         </FlexContainer>
         <label htmlFor="comment">Comment</label>
         <StyledCommentTextarea
-          defaultValue={editItem ? editItem.comment : ""}
+          defaultValue={mode === "edit" ? editItem.comment : ""}
           name="comment"
           id="comment"
           placeholder="(Optional)"
           maxLength="100"
           wrap="hard"
         />
-        {editItem ? (
-          <StyledSubmitButton>Submit</StyledSubmitButton>
-        ) : (
-          <StyledCreateButton>Create</StyledCreateButton>
-        )}
+
+        <StyledSubmitButton>
+          {mode === "add" ? "Create" : "Update"}
+        </StyledSubmitButton>
       </StyledForm>
-      {editItem && (
-        <StyledCancelButton
-          onClick={() => {
-            onToggleIsEditing(null);
-          }}
-        >
-          Cancel
-        </StyledCancelButton>
-      )}
+      <StyledCancelButton
+        onClick={() => {
+          onChangeMode("default");
+        }}
+      >
+        Cancel
+      </StyledCancelButton>
     </FormContainer>
   );
 }

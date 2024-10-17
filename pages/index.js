@@ -14,9 +14,14 @@ export default function HomePage({
   const unPurchasedItems = shoppingItems.filter((item) => !item.isPurchased);
 
   const [editItem, setEditItem] = useState(null);
+  const [mode, setMode] = useState("default");
 
-  function toggleIsEditing(shoppingItem) {
-    setEditItem(shoppingItem);
+  function handleChangeMode(mode) {
+    setMode(mode);
+  }
+
+  function handleItemToEdit(item) {
+    setEditItem(item);
   }
 
   return (
@@ -24,7 +29,7 @@ export default function HomePage({
       <StyledHeader>
         <StyledHeadline>GrocerEase</StyledHeadline>
       </StyledHeader>
-      <main>
+      <StyledMain>
         <ListHeader>
           <StyledListName>Shopping List</StyledListName>
           <StyledTotalItems>
@@ -32,17 +37,25 @@ export default function HomePage({
           </StyledTotalItems>
         </ListHeader>
 
-        {editItem ? (
+        <button type="button" onClick={() => handleChangeMode("add")}>
+          +
+        </button>
+
+        {mode === "add" && (
           <Form
-            onEditItem={onEditItem}
+            onSubmitItem={onCreateItem}
             editItem={editItem}
-            onToggleIsEditing={toggleIsEditing}
+            mode={mode}
+            onChangeMode={handleChangeMode}
           />
-        ) : (
+        )}
+
+        {mode === "edit" && (
           <Form
-            onCreateItem={onCreateItem}
+            onSubmitItem={onEditItem}
             editItem={editItem}
-            onToggleIsEditing={toggleIsEditing}
+            mode={mode}
+            onChangeMode={handleChangeMode}
           />
         )}
 
@@ -50,7 +63,8 @@ export default function HomePage({
           shoppingItems={unPurchasedItems}
           onDeleteItem={onDeleteItem}
           onTogglePurchased={onTogglePurchased}
-          onToggleIsEditing={toggleIsEditing}
+          onHandleEditItem={handleItemToEdit}
+          onChangeMode={handleChangeMode}
         />
 
         {unPurchasedItems.length === 0 && (
@@ -70,9 +84,10 @@ export default function HomePage({
           shoppingItems={purchasedItems}
           onDeleteItem={onDeleteItem}
           onTogglePurchased={onTogglePurchased}
-          onToggleIsEditing={toggleIsEditing}
+          onHandleEditItem={handleItemToEdit}
+          onToggleIsEditing={() => setIsEditMode(true)}
         />
-      </main>
+      </StyledMain>
     </>
   );
 }
@@ -98,6 +113,10 @@ const StyledHeadline = styled.h1`
   border-bottom: 0;
   padding: 6px 0;
   margin: 0;
+`;
+
+const StyledMain = styled.main`
+  margin-top: 120px;
 `;
 
 const ListHeader = styled.div`
