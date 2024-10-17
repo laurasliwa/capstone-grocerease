@@ -65,7 +65,7 @@ export default function ShoppingItemForm({
               id="quantity"
               type="number"
               placeholder="(Required)"
-              min="0"
+              min="1"
               max="999"
               required
             />
