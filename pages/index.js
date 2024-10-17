@@ -1,34 +1,76 @@
 import Form from "@/components/Form";
 import ShoppingItemList from "@/components/ShoppingItemList";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function HomePage({
   shoppingItems,
   onCreateItem,
   onDeleteItem,
   onTogglePurchased,
+  onEditItem,
 }) {
   const purchasedItems = shoppingItems.filter((item) => item.isPurchased);
   const unPurchasedItems = shoppingItems.filter((item) => !item.isPurchased);
+
+  const [editItem, setEditItem] = useState(null);
+  const [mode, setMode] = useState("default");
+
+  function handleChangeMode(mode) {
+    setMode(mode);
+  }
+
+  function handleItemToEdit(item) {
+    setEditItem(item);
+  }
 
   return (
     <>
       <StyledHeader>
         <StyledHeadline>GrocerEase</StyledHeadline>
       </StyledHeader>
-      <main>
+      <StyledMain>
         <ListHeader>
           <StyledListName>Shopping List</StyledListName>
           <StyledTotalItems>
             {unPurchasedItems.length} items to buy{" "}
           </StyledTotalItems>
         </ListHeader>
-        <Form onCreateItem={onCreateItem} />
+        <StyledButtonContainer>
+          <StyledFormButton
+            type="button"
+            onClick={() => handleChangeMode("add")}
+          >
+            +
+          </StyledFormButton>
+        </StyledButtonContainer>
+
+        {mode === "add" && (
+          <Form
+            onSubmitItem={onCreateItem}
+            editItem={editItem}
+            mode={mode}
+            onChangeMode={handleChangeMode}
+          />
+        )}
+
+        {mode === "edit" && (
+          <Form
+            onSubmitItem={onEditItem}
+            editItem={editItem}
+            mode={mode}
+            onChangeMode={handleChangeMode}
+          />
+        )}
+
         <ShoppingItemList
           shoppingItems={unPurchasedItems}
           onDeleteItem={onDeleteItem}
           onTogglePurchased={onTogglePurchased}
+          onHandleEditItem={handleItemToEdit}
+          onChangeMode={handleChangeMode}
         />
+
         {unPurchasedItems.length === 0 && (
           <StyledMessageContainer>
             <StyledMessage>
@@ -46,8 +88,10 @@ export default function HomePage({
           shoppingItems={purchasedItems}
           onDeleteItem={onDeleteItem}
           onTogglePurchased={onTogglePurchased}
+          onHandleEditItem={handleItemToEdit}
+          onToggleIsEditing={() => setIsEditMode(true)}
         />
-      </main>
+      </StyledMain>
     </>
   );
 }
@@ -75,6 +119,10 @@ const StyledHeadline = styled.h1`
   margin: 0;
 `;
 
+const StyledMain = styled.main`
+  margin-top: 120px;
+`;
+
 const ListHeader = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 0.5fr;
@@ -87,6 +135,7 @@ const ListHeader = styled.div`
   border-style: solid;
   border-radius: 0 0 15px 15px;
   height: 40px;
+  z-index: 5;
 `;
 
 const StyledListName = styled.h2`
@@ -105,6 +154,19 @@ const StyledTotalItems = styled.p`
   color: #362f23;
   padding: 0 10px 0 0;
   margin: 8px 0 0 0;
+`;
+
+const StyledButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledFormButton = styled.button`
+  border-bottom: 1px solid #362f23;
+  border-radius: 15px;
+  background-color: #fff4e9;
+  color: #362f23;
+  z-index: 1;
 `;
 
 const StyledMessageContainer = styled.div`

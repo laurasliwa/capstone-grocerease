@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useState } from "react";
 import Delete from "@/public/icons/delete.svg";
+import Edit from "@/public/icons/edit.svg";
 
 export default function ShoppingItem({
   id,
@@ -11,6 +12,7 @@ export default function ShoppingItem({
   onDeleteItem,
   onTogglePurchased,
   isPurchased,
+  onActivateEditMode,
 }) {
   const [isDeleteConfirmVisible, setIsDeleteConfirmVisible] = useState(false);
 
@@ -32,6 +34,9 @@ export default function ShoppingItem({
           <ItemName $isPurchased={isPurchased}>{name}</ItemName>
           <ItemCategory>{category}</ItemCategory>
           <StyledLink href={`/${id}`}>Details</StyledLink>
+          <EditButton onClick={onActivateEditMode}>
+            <EditIcon />
+          </EditButton>
           <StyledCheckBox
             type="checkbox"
             defaultChecked={isPurchased}
@@ -120,6 +125,18 @@ const StyledLink = styled(Link)`
   padding: 2px 0 0 6px;
   margin-left: 12px;
   font-size: 12px;
+`;
+
+const EditButton = styled.button`
+  grid-area: edit;
+  border: none;
+  background-color: transparent;
+`;
+
+const EditIcon = styled(Edit)`
+  width: 20px;
+  height: 20px;
+  border-left: 1px dotted #362f23;
 `;
 
 const StyledCheckBox = styled.input`

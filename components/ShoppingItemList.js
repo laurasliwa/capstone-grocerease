@@ -5,6 +5,8 @@ export default function ShoppingItemList({
   shoppingItems,
   onDeleteItem,
   onTogglePurchased,
+  onHandleEditItem,
+  onChangeMode,
 }) {
   return (
     <>
@@ -20,6 +22,9 @@ export default function ShoppingItemList({
               isPurchased={shoppingItem.isPurchased}
               onDeleteItem={onDeleteItem}
               onTogglePurchased={onTogglePurchased}
+              onActivateEditMode={() => {
+                onChangeMode("edit"), onHandleEditItem(shoppingItem);
+              }}
             />
           );
         })}
