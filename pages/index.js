@@ -36,10 +36,14 @@ export default function HomePage({
             {unPurchasedItems.length} items to buy{" "}
           </StyledTotalItems>
         </ListHeader>
-
-        <button type="button" onClick={() => handleChangeMode("add")}>
-          +
-        </button>
+        <StyledButtonContainer>
+          <StyledFormButton
+            type="button"
+            onClick={() => handleChangeMode("add")}
+          >
+            +
+          </StyledFormButton>
+        </StyledButtonContainer>
 
         {mode === "add" && (
           <Form
@@ -131,6 +135,7 @@ const ListHeader = styled.div`
   border-style: solid;
   border-radius: 0 0 15px 15px;
   height: 40px;
+  z-index: 5;
 `;
 
 const StyledListName = styled.h2`
@@ -149,6 +154,19 @@ const StyledTotalItems = styled.p`
   color: #362f23;
   padding: 0 10px 0 0;
   margin: 8px 0 0 0;
+`;
+
+const StyledButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledFormButton = styled.button`
+  border-bottom: 1px solid #362f23;
+  border-radius: 15px;
+  background-color: #fff4e9;
+  color: #362f23;
+  z-index: 1;
 `;
 
 const StyledMessageContainer = styled.div`

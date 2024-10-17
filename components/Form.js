@@ -11,7 +11,6 @@ export default function ShoppingItemForm({
     event.preventDefault();
     const formData = new FormData(event.target);
     const newItem = Object.fromEntries(formData);
-    console.log(newItem);
 
     if (mode === "add") {
       onSubmitItem(newItem);
@@ -98,8 +97,7 @@ export default function ShoppingItemForm({
 }
 
 const FormContainer = styled.div`
-  margin: 70px 0 0 0;
-  padding: 10px;
+  padding: 0 10px 10px 10px;
   border-bottom: 1px solid #362f23;
 `;
 
@@ -123,7 +121,7 @@ const StyledQuantityInputContainer = styled.div`
 
 const StyledHeader = styled.h3`
   text-align: center;
-  margin: 20px 0 0 0;
+  margin-top: 6px;
   font-size: 1.4rem;
 `;
 const StyledItemNameInput = styled.input`
@@ -169,10 +167,6 @@ const StyledButton = styled.button`
   font-size: 16px;
 `;
 
-const StyledCreateButton = styled(StyledButton)`
-  align-self: center;
-`;
-
 const StyledSubmitButton = styled(StyledButton)`
   position: relative;
   left: 105px;
@@ -181,5 +175,5 @@ const StyledSubmitButton = styled(StyledButton)`
 const StyledCancelButton = styled(StyledButton)`
   position: absolute;
   left: 185px;
-  top: 304px;
+  top: 350px;
 `;
