@@ -30,7 +30,7 @@ export default function HomePage({
     setFilterCategory(event.target.value);
   }
 
-  function handleFilterReset(event) {
+  function handleFilterReset() {
     setFilterCategory("");
   }
 
@@ -95,11 +95,7 @@ export default function HomePage({
               </option>
             ))}
           </StyledFilterSelect>
-          <StyledResetButton
-            onClick={() => {
-              handleFilterReset();
-            }}
-          >
+          <StyledResetButton onClick={handleFilterReset}>
             Reset
           </StyledResetButton>
         </StyledFilterBox>
