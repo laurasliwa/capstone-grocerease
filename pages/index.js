@@ -92,13 +92,13 @@ export default function HomePage({
               );
             })}
           </StyledFilterSelect>
-          <button
+          <StyledResetButton
             onClick={() => {
               setFilterCategory(event.target.reset);
             }}
           >
             Reset
-          </button>
+          </StyledResetButton>
         </StyledFilterBox>
         <ShoppingItemList
           shoppingItems={filteredUnPurchasedItems}
@@ -282,4 +282,15 @@ const StyledFilterSelect = styled.select`
   border: 1px solid #362f23;
   border-radius: 8px;
   height: 1.4rem;
+`;
+
+const StyledResetButton = styled.button`
+  border: 1px solid #362f23;
+  border-radius: 15px;
+  height: 1.4rem;
+  width: 3.6rem;
+  background-color: #fff4e9;
+  color: #362f23;
+  padding: 2px 2px;
+  font-size: 14px;
 `;
