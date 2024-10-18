@@ -1,6 +1,7 @@
 import Form from "@/components/Form";
 import ShoppingItemList from "@/components/ShoppingItemList";
 import styled from "styled-components";
+import categories from "@/assets/categories.json";
 import { useState } from "react";
 
 export default function HomePage({
@@ -15,6 +16,7 @@ export default function HomePage({
 
   const [editItem, setEditItem] = useState(null);
   const [mode, setMode] = useState("default");
+  const [filterCategory, setFilterCategory] = useState("");
 
   function handleChangeMode(mode) {
     setMode(mode);
@@ -23,6 +25,22 @@ export default function HomePage({
   function handleItemToEdit(item) {
     setEditItem(item);
   }
+
+  function handleFilterChange(event) {
+    setFilterCategory(event.target.value);
+  }
+
+  function handleFilterReset() {
+    setFilterCategory("");
+  }
+
+  const filteredUnPurchasedItems = filterCategory
+    ? unPurchasedItems.filter((item) => item.category === filterCategory)
+    : unPurchasedItems;
+
+  const filteredPurchasedItems = filterCategory
+    ? purchasedItems.filter((item) => item.category === filterCategory)
+    : purchasedItems;
 
   return (
     <>
@@ -62,9 +80,27 @@ export default function HomePage({
             onChangeMode={handleChangeMode}
           />
         )}
-
+        <StyledFilterBox>
+          <label htmlFor="filter">Filter: </label>
+          <StyledFilterSelect
+            name="filter"
+            id="filter"
+            onChange={handleFilterChange}
+            value={filterCategory}
+          >
+            <option value="">---Choose a category---</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </StyledFilterSelect>
+          <StyledResetButton onClick={handleFilterReset}>
+            Reset
+          </StyledResetButton>
+        </StyledFilterBox>
         <ShoppingItemList
-          shoppingItems={unPurchasedItems}
+          shoppingItems={filteredUnPurchasedItems}
           onDeleteItem={onDeleteItem}
           onTogglePurchased={onTogglePurchased}
           onHandleEditItem={handleItemToEdit}
@@ -78,6 +114,16 @@ export default function HomePage({
             </StyledMessage>
           </StyledMessageContainer>
         )}
+
+        {filteredUnPurchasedItems.length + filteredPurchasedItems.length ===
+          0 && (
+          <StyledMessageContainer>
+            <StyledFilterMessage>
+              No items in this category found. Choose a different category or
+              reset the fiter.
+            </StyledFilterMessage>
+          </StyledMessageContainer>
+        )}
         <StyledPurchasedHeader>
           <StyledPurchasedName>Purchased items</StyledPurchasedName>
           <StyledPurchasedItems>
@@ -85,7 +131,7 @@ export default function HomePage({
           </StyledPurchasedItems>
         </StyledPurchasedHeader>
         <ShoppingItemList
-          shoppingItems={purchasedItems}
+          shoppingItems={filteredPurchasedItems}
           onDeleteItem={onDeleteItem}
           onTogglePurchased={onTogglePurchased}
           onHandleEditItem={handleItemToEdit}
@@ -188,6 +234,19 @@ const StyledMessage = styled.p`
   text-align: center;
 `;
 
+const StyledFilterMessage = styled.p`
+  border: 1px solid #362f23;
+  border-radius: 15px;
+  height: 5.6rem;
+  width: 20rem;
+  background-color: #fff4e9;
+  color: #362f23;
+  padding: 4px;
+  margin: 0 26px;
+  font-size: 20px;
+  text-align: center;
+`;
+
 const StyledPurchasedHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -210,4 +269,28 @@ const StyledPurchasedItems = styled.p`
   font-size: 1rem;
   color: #362f23;
   text-align: right;
+`;
+
+const StyledFilterBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+  gap: 4px;
+`;
+
+const StyledFilterSelect = styled.select`
+  border: 1px solid #362f23;
+  border-radius: 8px;
+  height: 1.4rem;
+`;
+
+const StyledResetButton = styled.button`
+  border: 1px solid #362f23;
+  border-radius: 15px;
+  height: 1.4rem;
+  width: 3.6rem;
+  background-color: #fff4e9;
+  color: #362f23;
+  padding: 2px 2px;
+  font-size: 14px;
 `;
