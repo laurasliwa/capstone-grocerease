@@ -16,6 +16,7 @@ export default function HomePage({
 
   const [editItem, setEditItem] = useState(null);
   const [mode, setMode] = useState("default");
+  const [filterCategory, setFilterCategory] = useState("");
 
   function handleChangeMode(mode) {
     setMode(mode);
@@ -24,6 +25,18 @@ export default function HomePage({
   function handleItemToEdit(item) {
     setEditItem(item);
   }
+
+  function handleFilterChange(event) {
+    setFilterCategory(event.target.value);
+  }
+
+  const filteredUnPurchasedItems = filterCategory
+    ? unPurchasedItems.filter((item) => item.category === filterCategory)
+    : unPurchasedItems;
+
+  const filteredPurchasedItems = filterCategory
+    ? purchasedItems.filter((item) => item.category === filterCategory)
+    : purchasedItems;
 
   return (
     <>
@@ -65,7 +78,11 @@ export default function HomePage({
         )}
         <StyledFilterBox>
           <label htmlFor="filter">Filter: </label>
-          <StyledFilterSelect name="filter" id="filter">
+          <StyledFilterSelect
+            name="filter"
+            id="filter"
+            onChange={handleFilterChange}
+          >
             <option value="">---Choose a category---</option>
             {categories.map((category) => {
               return (
@@ -77,7 +94,7 @@ export default function HomePage({
           </StyledFilterSelect>
         </StyledFilterBox>
         <ShoppingItemList
-          shoppingItems={unPurchasedItems}
+          shoppingItems={filteredUnPurchasedItems}
           onDeleteItem={onDeleteItem}
           onTogglePurchased={onTogglePurchased}
           onHandleEditItem={handleItemToEdit}
@@ -98,7 +115,7 @@ export default function HomePage({
           </StyledPurchasedItems>
         </StyledPurchasedHeader>
         <ShoppingItemList
-          shoppingItems={purchasedItems}
+          shoppingItems={filteredPurchasedItems}
           onDeleteItem={onDeleteItem}
           onTogglePurchased={onTogglePurchased}
           onHandleEditItem={handleItemToEdit}
