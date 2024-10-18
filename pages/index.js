@@ -82,6 +82,7 @@ export default function HomePage({
             name="filter"
             id="filter"
             onChange={handleFilterChange}
+            value={filterCategory}
           >
             <option value="">---Choose a category---</option>
             {categories.map((category) => {
@@ -94,7 +95,7 @@ export default function HomePage({
           </StyledFilterSelect>
           <StyledResetButton
             onClick={() => {
-              setFilterCategory(event.target.reset);
+              setFilterCategory("");
             }}
           >
             Reset
