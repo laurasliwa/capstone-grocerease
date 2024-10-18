@@ -1,6 +1,7 @@
 import Form from "@/components/Form";
 import ShoppingItemList from "@/components/ShoppingItemList";
 import styled from "styled-components";
+import categories from "@/assets/categories.json";
 import { useState } from "react";
 
 export default function HomePage({
@@ -62,7 +63,19 @@ export default function HomePage({
             onChangeMode={handleChangeMode}
           />
         )}
-
+        <StyledFilterBox>
+          <label htmlFor="filter">Filter: </label>
+          <StyledFilterSelect name="filter" id="filter">
+            <option value="">---Choose a category---</option>
+            {categories.map((category) => {
+              return (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              );
+            })}
+          </StyledFilterSelect>
+        </StyledFilterBox>
         <ShoppingItemList
           shoppingItems={unPurchasedItems}
           onDeleteItem={onDeleteItem}
@@ -210,4 +223,17 @@ const StyledPurchasedItems = styled.p`
   font-size: 1rem;
   color: #362f23;
   text-align: right;
+`;
+
+const StyledFilterBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+  gap: 4px;
+`;
+
+const StyledFilterSelect = styled.select`
+  border: 1px solid #362f23;
+  border-radius: 8px;
+  height: 1.4rem;
 `;
