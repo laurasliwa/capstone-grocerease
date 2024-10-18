@@ -30,6 +30,10 @@ export default function HomePage({
     setFilterCategory(event.target.value);
   }
 
+  function handleFilterReset(event) {
+    setFilterCategory("");
+  }
+
   const filteredUnPurchasedItems = filterCategory
     ? unPurchasedItems.filter((item) => item.category === filterCategory)
     : unPurchasedItems;
@@ -85,17 +89,15 @@ export default function HomePage({
             value={filterCategory}
           >
             <option value="">---Choose a category---</option>
-            {categories.map((category) => {
-              return (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              );
-            })}
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
           </StyledFilterSelect>
           <StyledResetButton
             onClick={() => {
-              setFilterCategory("");
+              handleFilterReset();
             }}
           >
             Reset
@@ -117,7 +119,8 @@ export default function HomePage({
           </StyledMessageContainer>
         )}
 
-        {filteredUnPurchasedItems.length === 0 && (
+        {filteredUnPurchasedItems.length + filteredPurchasedItems.length ===
+          0 && (
           <StyledMessageContainer>
             <StyledFilterMessage>
               No items in this category found. Choose a different category or
