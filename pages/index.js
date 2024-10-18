@@ -92,6 +92,13 @@ export default function HomePage({
               );
             })}
           </StyledFilterSelect>
+          <button
+            onClick={() => {
+              setFilterCategory(event.target.reset);
+            }}
+          >
+            Reset
+          </button>
         </StyledFilterBox>
         <ShoppingItemList
           shoppingItems={filteredUnPurchasedItems}
@@ -106,6 +113,15 @@ export default function HomePage({
             <StyledMessage>
               I feel so empty <span>🥺</span> Add new items with the form above.
             </StyledMessage>
+          </StyledMessageContainer>
+        )}
+
+        {filteredUnPurchasedItems.length === 0 && (
+          <StyledMessageContainer>
+            <StyledFilterMessage>
+              No items in this category found. Choose a different category or
+              reset the fiter.
+            </StyledFilterMessage>
           </StyledMessageContainer>
         )}
         <StyledPurchasedHeader>
@@ -209,6 +225,19 @@ const StyledMessage = styled.p`
   border: 1px solid #362f23;
   border-radius: 15px;
   height: 4rem;
+  width: 20rem;
+  background-color: #fff4e9;
+  color: #362f23;
+  padding: 4px;
+  margin: 0 26px;
+  font-size: 20px;
+  text-align: center;
+`;
+
+const StyledFilterMessage = styled.p`
+  border: 1px solid #362f23;
+  border-radius: 15px;
+  height: 5.6rem;
   width: 20rem;
   background-color: #fff4e9;
   color: #362f23;
