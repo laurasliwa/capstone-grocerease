@@ -19,7 +19,7 @@ Grocer'Ease is a web application designed to streamline and simplify your grocer
 
 ## Tech Stack
 
-React | Next.js | SWR | Node.js | Git | GitHub | JavScript | Vercel | styled-components
+React | Next.js | JavScript | styled-components | Vercel | Git | GitHub
 
 ### Local Development
 
