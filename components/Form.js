@@ -169,11 +169,11 @@ const StyledButton = styled.button`
 
 const StyledSubmitButton = styled(StyledButton)`
   position: relative;
-  left: 105px;
+  left: 30%;
 `;
 
 const StyledCancelButton = styled(StyledButton)`
   position: absolute;
-  left: 185px;
-  top: 350px;
+  left: 50%;
+  top: 353px;
 `;
