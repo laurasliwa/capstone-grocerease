@@ -61,7 +61,7 @@ const ItemContainer = styled.li`
     "itemquantity itemcategory mark delete";
   border: 1px solid #362f23;
   padding: 0;
-  margin: 6px;
+  margin: 0 6px 6px;
   border-radius: 15px;
   background-color: ${({ $category }) => {
     switch ($category) {
