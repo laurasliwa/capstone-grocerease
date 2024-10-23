@@ -8,14 +8,21 @@ Grocer'Ease is a web application designed to streamline and simplify your grocer
 
 ## Key Features
 
-📋 Shopping Items List: Browse a well-organised collection of shopping items.
-🧾 Shopping Item Details: View detailed information about each shopping item.
-🍝 Create Shopping Item: Add new shopping items to the shopping list.
-🍽 Delete Shopping Item: Remove unwanted items from the shopping list.
-🧂 Update Shopping Item: Update and modify existing shopping items.
-🪅 Mark Item as Purchased: Track which items have been bought.
-🫗 Filter Shopping Items: Filter shopping items based on various criteria.
-🥔 Persist Shopping Data: Shopping lists and items are saved and remain available even after closing the app.
+📋 **Shopping Items List:** Browse a well-organised collection of shopping items.
+
+🧾 **Shopping Item Details:** View detailed information about each shopping item.
+
+🍝 **Create Shopping Item:** Add new shopping items to the shopping list.
+
+🍽 **Delete Shopping Item:** Remove unwanted items from the shopping list.
+
+🧂 **Update Shopping Item:** Update and modify existing shopping items.
+
+🪅 **Mark Item as Purchased:** Track which items have been bought.
+
+🫗 **Filter Shopping Items:** Filter shopping items based on various criteria.
+
+🥔 **Persist Shopping Data:** Shopping lists and items are saved and remain available even after closing the app.
 
 ## Tech Stack
 
